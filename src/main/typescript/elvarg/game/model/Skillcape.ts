@@ -29,14 +29,8 @@ export class Skillcape {
     public static readonly HUNTER = new Skillcape ([9948, 9949, 10646], 5158, 907, 14);
     public static readonly QUEST_POINT = new Skillcape ([9813, 9814, 10662], 4945, 816, 19);
 
+    // TODO - Populate map for Skillcapes
     private static dataMap = new Map<number, Skillcape>();
-    static {
-        for (let data of Object.values(Skillcape)) {
-            for (let item of data.item) {
-                Skillcape.dataMap.set(item.getId(), data);
-            }
-        }
-    }
 
     private readonly item: Item[];
     private readonly animation: Animation;

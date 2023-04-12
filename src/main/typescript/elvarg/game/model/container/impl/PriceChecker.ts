@@ -32,12 +32,12 @@ export class PriceChecker extends ItemContainer {
         return StackType.DEFAULT;
     }
 
-    override refreshItems(): ItemContainer {
+    refreshItems(): ItemContainer {
         const items_ = this.getValidItems();
         if (items_.length > 0) {
             this.player.getPacketSender().sendString("", 18355).sendString(
                 Misc.insertCommasToNumber(this.getTotalValue()), 18351); // TOTAL VALUE
-        
+
 
             // Send item prices
             for (let i = 0; i < this.capacity(); i++) {
@@ -128,7 +128,7 @@ export class PriceChecker extends ItemContainer {
                 if (item.getAmount() == 1) {
                     this.player.getInventory().switchItem(this, item, false, slot, true);
                 } else {
-                    
+
                     this.switchItems(this, item, false, true);
                 }
             }

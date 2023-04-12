@@ -9,11 +9,9 @@ import { OptionDialogue } from "./entries/impl/OptionDialogue";
 import { DialogueExpression } from "./DialogueExpression";
 
 export class DialogueManager {
-    public static STATIC_DIALOGUES: Map<number, DialogueBuilder> = new Map<number, DialogueBuilder>();
-
-    static {
-        DialogueManager.STATIC_DIALOGUES.set(0, new TestStaticDialogue());
-    }
+    public static readonly STATIC_DIALOGUES: Map<number, DialogueBuilder> = new Map<number, DialogueBuilder>([
+        [0, new TestStaticDialogue()]
+    ]);
 
     private readonly player: Player;
 
@@ -29,7 +27,7 @@ export class DialogueManager {
 
     /**
      * Creates a new {@link DialogueManager} for the given {@link Player}.
-     * 
+     *
      * @param player
      */
     constructor(player: Player) {

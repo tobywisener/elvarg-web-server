@@ -1,7 +1,6 @@
 
 import { CombatEquipment } from '../CombatEquipment';
 import { CombatFactory } from '../CombatFactory';
-import { FightStyle } from '../FightStyle';
 import { Mobile } from '../../../entity/impl/Mobile';
 import { Player } from '../../../entity/impl/player/Player';
 import { Graphic } from '../../../model/Graphic';
@@ -19,6 +18,7 @@ export class RangedData {
     /**
   * A map of items and their respective interfaces.
   */
+    // TODO - Populate rangedAmmunition maps
     private static rangedWeapons: Map<number, RangedWeapon> = new Map<number, RangedWeapon>();
     private static rangedAmmunition: Map<number, Ammunition> = new Map<number, Ammunition>();
 
@@ -288,16 +288,6 @@ export class Ammunition {
         return !Ammunition.NO_GROUND_DROP.add(this);
     }
 
-
-
-
-    static {
-        for (const data of Object.values(Ammunition)) {
-            Ammunition.rangedAmmunition.set(data.getItemId(), data);
-        }
-    }
-
-
 }
 
 export class RangedWeaponType {
@@ -416,14 +406,6 @@ export class RangedWeapon {
 
     public getType(): RangedWeaponType {
         return this.type;
-    }
-
-    static {
-        for (const data of Object.values(RangedWeapon)) {
-            for (const i of data.getWeaponIds()) {
-                RangedWeapon.rangedWeapons.set(i, data);
-            }
-        }
     }
 }
 

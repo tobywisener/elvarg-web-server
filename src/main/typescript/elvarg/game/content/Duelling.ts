@@ -4,8 +4,8 @@ import { SecondsTimer } from "../model/SecondsTimer";
 import { PlayerStatus } from "../model/PlayerStatus";
 import { Misc } from "../../util/Misc";
 import { ItemDefinition } from "../definition/ItemDefinition";
-import { Equipment } from "../model/container/impl/Equipment";
 import { Inventory } from "../model/container/impl/Inventory";
+import { Equipment } from "../model/container/impl/Equipment";
 import { Trading } from "./Trading";
 import { StackType } from "../model/container/StackType";
 import { Item } from "../model/Item";
@@ -15,21 +15,21 @@ class PlayerItemContainer extends ItemContainer {
     constructor(player, private readonly execFunc: Function) {
       super(player);
     }
-  
+
     stackType() {
       return StackType.DEFAULT;
     }
-  
+
     refreshItems(): ItemContainer {
       this.execFunc();
       return this;
     }
-  
+
     full(): ItemContainer {
         this.getPlayer().getPacketSender().sendMessage("You cannot stake more items.");
         return this;
     }
-  
+
     capacity() {
       return 28;
     }
@@ -58,7 +58,7 @@ export class Dueling {
     private rules: boolean[];
     private interact: Player;
     private configValue: number;
-    private state: DuelState = DuelState.NONE;;
+    private state: DuelState = DuelState.NONE;
     // Delays!!
     private button_delay = new SecondsTimer();
     private request_delay = new SecondsTimer();

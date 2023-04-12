@@ -30,48 +30,40 @@ export class Autocasting {
     public static readonly ANCIENT_SPELL_AUTOCAST_STAFFS = new Set<number>([ItemIdentifiers.KODAI_WAND, ItemIdentifiers.MASTER_WAND,
     ItemIdentifiers.ANCIENT_STAFF, ItemIdentifiers.NIGHTMARE_STAFF, ItemIdentifiers.VOLATILE_NIGHTMARE_STAFF, ItemIdentifiers.ELDRITCH_NIGHTMARE_STAFF, ItemIdentifiers.TOXIC_STAFF_OF_THE_DEAD, ItemIdentifiers.ELDER_WAND, ItemIdentifiers.STAFF_OF_THE_DEAD, ItemIdentifiers.STAFF_OF_LIGHT]);
 
-    public static readonly AUTOCAST_SPELLS = new Map<number, CombatSpell>();
-
-
-
-    static {
-        // Modern
-        Autocasting.AUTOCAST_SPELLS.set(1830, CombatSpells.WIND_STRIKE);
-        Autocasting.AUTOCAST_SPELLS.set(1831, CombatSpells.WATER_STRIKE);
-        Autocasting.AUTOCAST_SPELLS.set(1832, CombatSpells.EARTH_STRIKE);
-        Autocasting.AUTOCAST_SPELLS.set(1833, CombatSpells.FIRE_STRIKE);
-        Autocasting.AUTOCAST_SPELLS.set(1834, CombatSpells.WIND_BOLT);
-        Autocasting.AUTOCAST_SPELLS.set(1835, CombatSpells.WATER_BOLT);
-        Autocasting.AUTOCAST_SPELLS.set(1836, CombatSpells.EARTH_BOLT);
-        Autocasting.AUTOCAST_SPELLS.set(1837, CombatSpells.FIRE_BOLT);
-        Autocasting.AUTOCAST_SPELLS.set(1838, CombatSpells.WIND_BLAST);
-        Autocasting.AUTOCAST_SPELLS.set(1839, CombatSpells.WATER_BLAST);
-        Autocasting.AUTOCAST_SPELLS.set(1840, CombatSpells.EARTH_BLAST);
-        Autocasting.AUTOCAST_SPELLS.set(1841, CombatSpells.FIRE_BLAST);
-        Autocasting.AUTOCAST_SPELLS.set(1842, CombatSpells.WIND_WAVE);
-        Autocasting.AUTOCAST_SPELLS.set(1843, CombatSpells.WATER_WAVE);
-        Autocasting.AUTOCAST_SPELLS.set(1844, CombatSpells.EARTH_WAVE);
-        Autocasting.AUTOCAST_SPELLS.set(1845, CombatSpells.FIRE_WAVE);
-        // Ancients
-        Autocasting.AUTOCAST_SPELLS.set(13189, CombatSpells.SMOKE_RUSH);
-        Autocasting.AUTOCAST_SPELLS.set(13241, CombatSpells.SHADOW_RUSH);
-        Autocasting.AUTOCAST_SPELLS.set(13247, CombatSpells.BLOOD_RUSH);
-        Autocasting.AUTOCAST_SPELLS.set(6162, CombatSpells.ICE_RUSH);
-        Autocasting.AUTOCAST_SPELLS.set(13215, CombatSpells.SMOKE_BURST);
-        Autocasting.AUTOCAST_SPELLS.set(13267, CombatSpells.SHADOW_BURST);
-        Autocasting.AUTOCAST_SPELLS.set(13167, CombatSpells.BLOOD_BURST);
-        Autocasting.AUTOCAST_SPELLS.set(13125, CombatSpells.ICE_BURST);
-        Autocasting.AUTOCAST_SPELLS.set(13202, CombatSpells.SMOKE_BLITZ);
-        Autocasting.AUTOCAST_SPELLS.set(13254, CombatSpells.SHADOW_BLITZ);
-        Autocasting.AUTOCAST_SPELLS.set(13158, CombatSpells.BLOOD_BLITZ);
-        Autocasting.AUTOCAST_SPELLS.set(13114, CombatSpells.ICE_BLITZ);
-        Autocasting.AUTOCAST_SPELLS.set(13228, CombatSpells.SMOKE_BARRAGE);
-        Autocasting.AUTOCAST_SPELLS.set(13280, CombatSpells.SHADOW_BARRAGE);
-        Autocasting.AUTOCAST_SPELLS.set(13178, CombatSpells.BLOOD_BARRAGE);
-        Autocasting.AUTOCAST_SPELLS.set(13136, CombatSpells.ICE_BARRAGE);
-        
-
-    }
+    public static readonly AUTOCAST_SPELLS: Map<number, CombatSpell> = new Map<number, CombatSpell>([
+        [1830, CombatSpells.WIND_STRIKE],
+        [1831, CombatSpells.WATER_STRIKE],
+        [1832, CombatSpells.EARTH_STRIKE],
+        [1833, CombatSpells.FIRE_STRIKE],
+        [1834, CombatSpells.WIND_BOLT],
+        [1835, CombatSpells.WATER_BOLT],
+        [1836, CombatSpells.EARTH_BOLT],
+        [1837, CombatSpells.FIRE_BOLT],
+        [1838, CombatSpells.WIND_BLAST],
+        [1839, CombatSpells.WATER_BLAST],
+        [1840, CombatSpells.EARTH_BLAST],
+        [1841, CombatSpells.FIRE_BLAST],
+        [1842, CombatSpells.WIND_WAVE],
+        [1843, CombatSpells.WATER_WAVE],
+        [1844, CombatSpells.EARTH_WAVE],
+        [1845, CombatSpells.FIRE_WAVE],
+        [13189, CombatSpells.SMOKE_RUSH],
+        [13241, CombatSpells.SHADOW_RUSH],
+        [13247, CombatSpells.BLOOD_RUSH],
+        [6162, CombatSpells.ICE_RUSH],
+        [13215, CombatSpells.SMOKE_BURST],
+        [13267, CombatSpells.SHADOW_BURST],
+        [13167, CombatSpells.BLOOD_BURST],
+        [13125, CombatSpells.ICE_BURST],
+        [13202, CombatSpells.SMOKE_BLITZ],
+        [13254, CombatSpells.SHADOW_BLITZ],
+        [13158, CombatSpells.BLOOD_BLITZ],
+        [13114, CombatSpells.ICE_BLITZ],
+        [13228, CombatSpells.SMOKE_BARRAGE],
+        [13280, CombatSpells.SHADOW_BARRAGE],
+        [13178, CombatSpells.BLOOD_BARRAGE],
+        [13136, CombatSpells.ICE_BARRAGE],
+    ]);
 
     public static handleAutocastTab(player: Player, actionButtonId: number) {
         if (Autocasting.AUTOCAST_SPELLS.has(actionButtonId)) {

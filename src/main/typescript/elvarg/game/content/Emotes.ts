@@ -127,14 +127,8 @@ const EMOTES = {
 }
 
 export class EmoteData {
+    // TODO: Populate emotes map
     public static emotes = new Map<number, EmoteData>();
-
-    static {
-        for (const t of Object.values(EmoteData)) {
-            const { button } = t;
-            EmoteData.emotes.set(button, t);
-        }
-    }
 
     public animation: Animation;
     public graphic: Graphic;

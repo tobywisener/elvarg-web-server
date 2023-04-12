@@ -59,7 +59,7 @@ Handles Pickpocketing.
 */
 export default class Thieving extends ItemIdentifiers {
     /**
-    
+
     Attempts to pickpocket an npc.
     */
     public static Pickpocketing = class {
@@ -235,10 +235,6 @@ export class Pickpocketable {
     public static readonly GNOME = new Pickpocketable(75, 199, 5, 1, [new Item(ItemIdentifiers.COINS, 300), new Item(ItemIdentifiers.EARTH_RUNE), new Item(ItemIdentifiers.GOLD_ORE), new Item(ItemIdentifiers.FIRE_ORB), new Item(ItemIdentifiers.SWAMP_TOAD), new Item(ItemIdentifiers.KING_WORM)], [6086, 6087, 6094, 6095, 6096])
 
 
-
-
-
-
     constructor(level: number, exp: number, stunTime: number, stunDamage: number, rewards: Item[], npcs?: number[]) {
         level = level;
         exp = exp;
@@ -276,22 +272,14 @@ export class Pickpocketable {
         return Pickpocketable.npcs;
     }
 
-
-    static {
-        for (const p of Object.values(Pickpocketable)) {
-            for (const i of p.getNpcs()) {
-                Pickpocketable.pickpockets.set(i, p);
-            }
-        }
-
-    }
-
     private static level: number;
     private static exp: number;
     private static stunTime: number;
     private static stunDamage: number;
     private static rewards: Item[];
     private static npcs: number[];
+
+    // TODO - Populate pickpockets
     private static pickpockets: Map<number, Pickpocketable> = new Map<number, Pickpocketable>();
 }
 
@@ -442,16 +430,8 @@ export class Stall {
         return this.rewards;
     }
 
-
+    // TODO - Populate stalls
     private static map: Map<number, Stall> = new Map<number, Stall>();
-
-    static {
-        for (const stall of Object.values(Stall)) {
-            for (const def of stall.getStalls()) {
-                Stall.map.set(def.getObjectId(), stall);
-            }
-        }
-    }
 
     private stalls: StallDefinition[];
     private reqLevel: number;

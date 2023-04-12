@@ -70,9 +70,9 @@ export class Fletching extends ItemIdentifiers {
     }
 
     public static stringBow = (player: Player, itemUsed: number, itemUsedWith: number): boolean => {
-        if (itemUsed === this.BOW_STRING || itemUsedWith === this.BOW_STRING || itemUsed === this.CROSSBOW_STRING || itemUsedWith === this.CROSSBOW_STRING) {
-            const string = itemUsed === this.BOW_STRING || itemUsed === this.CROSSBOW_STRING ? itemUsed : itemUsedWith;
-            const unstrung = itemUsed === this.BOW_STRING || itemUsed === this.CROSSBOW_STRING ? itemUsedWith : itemUsed;
+        if (itemUsed === Fletching.BOW_STRING || itemUsedWith === Fletching.BOW_STRING || itemUsed === Fletching.CROSSBOW_STRING || itemUsedWith === Fletching.CROSSBOW_STRING) {
+            const string = itemUsed === Fletching.BOW_STRING || itemUsed === Fletching.CROSSBOW_STRING ? itemUsed : itemUsedWith;
+            const unstrung = itemUsed === Fletching.BOW_STRING || itemUsed === Fletching.CROSSBOW_STRING ? itemUsedWith : itemUsed;
             const bow = StringableBow.unstrungBows.get(unstrung);
             if (bow) {
                 if (bow.getBowStringId() === string) {
@@ -101,7 +101,7 @@ export class Fletching extends ItemIdentifiers {
                 const menu = new CreationMenu("What would you like to make?", products, new FlecthingMenu((itemId, amount) => {
                     for (const fl of list.getFletchable()) {
                         if (fl.getProduct().getId() === itemId) {
-                            player.getSkillManager().startSkillable(new ItemCreationSkillable([new RequiredItem(new Item(this.KNIFE), false), new RequiredItem(new Item(list.getLogId()), true)], fl.getProduct(), amount, new AnimationLoop(fl.getAnimation(), 3), fl.getLevelRequired(), fl.getExperience(), Skill.FLETCHING));
+                            player.getSkillManager().startSkillable(new ItemCreationSkillable([new RequiredItem(new Item(Fletching.KNIFE), false), new RequiredItem(new Item(list.getLogId()), true)], fl.getProduct(), amount, new AnimationLoop(fl.getAnimation(), 3), fl.getLevelRequired(), fl.getExperience(), Skill.FLETCHING));
                         }
                     }
                 }));
@@ -378,4 +378,4 @@ class FletchableItem {
     public getAnimation(): Animation {
         return this.animation;
     }
-}    
+}

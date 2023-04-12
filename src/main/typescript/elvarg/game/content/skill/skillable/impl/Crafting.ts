@@ -11,13 +11,13 @@ import { Skill } from "../../../../model/Skill";
 
 class CraftingCreationMenuAction implements CreationMenuAction{
     constructor(private func: Function){
-        
+
     }
 
     execute(item: number, amount: number): void {
         this.func(item, amount)
     }
-    
+
 }
 
 class Crafting extends ItemIdentifiers {
@@ -33,7 +33,7 @@ class Crafting extends ItemIdentifiers {
         }
         return false;
     }
-    
+
 }
 
 export class CraftableGem {
@@ -77,21 +77,17 @@ export class CraftableGem {
       new Item(ItemIdentifiers.ZENYTE), new Item(ItemIdentifiers.UNCUT_ZENYTE), 89, 200,
       new AnimationLoop(new Animation(885), 3)
     );
-  
+
+    // TODO: Populate Gem map
     public static readonly map = new Map<number, CraftableGem>();
-  
-    static {
-      for (let c of Object.values(CraftableGem)) {
-        CraftableGem.map.set(c.getUncut().getId(), c);
-      }
-    }
-  
+
+
     private readonly cut: Item;
     private readonly uncut: Item;
     private readonly level: number;
     private readonly exp: number;
     private readonly animLoop: AnimationLoop;
-  
+
     constructor(cut: Item, uncut: Item, level: number, exp: number, animLoop: AnimationLoop){
         this.cut = cut;
         this.uncut = uncut;
@@ -120,4 +116,4 @@ export class CraftableGem {
         return this.animLoop;
     }
 }
- 
+

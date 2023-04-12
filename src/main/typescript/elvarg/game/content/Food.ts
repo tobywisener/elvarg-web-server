@@ -161,13 +161,46 @@ export class Edible {
     public static readonly PEACH = ( new Item(6883), 8 );
     public static readonly PURPLE_SWEETS = ( new Item(4561), 3 );
 
-    public static types: Map<number, Edible> = new Map();
+    public static types = new Map<number, Edible>([
+        [1971, new Edible(new Item(1971), 4)], // Kebab
+        [1985, new Edible(new Item(1985), 4)], // Cheese
+        [1891, new Edible(new Item(1891), 5)], // Cake
+        [1893, new Edible(new Item(1893), 5)], // Second cake slice
+        [1895, new Edible(new Item(1895), 5)], // Third cake slice
+        [14640, new Edible(new Item(14640), 12)], // Bandages
+        [247, new Edible(new Item(247), 2)], // Jangerberries
+        [2205, new Edible(new Item(2205), 7)], // Worm crunchies
+        [403, new Edible(new Item(403), 4)], // Edible seaweed
+        [319, new Edible(new Item(319), 1)], // Anchovies
+        [315, new Edible(new Item(315), 3)], // Shrimps
+        [325, new Edible(new Item(325), 4)], // Sardine
+        [339, new Edible(new Item(339), 7)], // Cod
+        [333, new Edible(new Item(333), 7)], // Trout
+        [351, new Edible(new Item(351), 8)], // Pike
+        [329, new Edible(new Item(329), 9)], // Salmon
+        [361, new Edible(new Item(361), 10)], // Tuna
+        [379, new Edible(new Item(379), 12)], // Lobster
+        [365, new Edible(new Item(365), 13)], // Bass
+        [373, new Edible(new Item(373), 14)], // Swordfish
+        [2293, new Edible(new Item(2293), 14)], // Meat pizza
+        [7946, new Edible(new Item(7946), 16)], // Monkfish
+        [385, new Edible(new Item(385), 20)], // Shark
+        [397, new Edible(new Item(397), 21)], // Sea turtle
+        [11936, new Edible(new Item(11936), 22)], // Dark crab
+        [391, new Edible(new Item(391), 22)], // Manta ray
+        [3144, new Edible(new Item(3144), 18)], // Karambwan
+        [13441, new Edible(new Item(13441), 22)], // Anglerfish
+        [1942, new Edible(new Item(1942), 1)], // Potato
+        [6701, new Edible(new Item(6701), 4)], // Baked potato
+        [6703, new Edible(new Item(6703), 14)], // Potato with butter
+        [7054, new Edible(new Item(7054), 14)], // Chilli potato
+        [7056, new Edible(new Item(7056), 16)], // Egg potato
+        [6705, new Edible(new Item(6705), 16)], // Potato with cheese
+        [7058, new Edible(new Item(7058), 20)], // Mushroom potato
+        [7060, new Edible(new Item(7060), 20)], // Tuna potato
+        // TODO: Fill out other foods
+        ]);
 
-    static {
-        for (const type of Object.values(Edible)) {
-            Edible.types.set(type.item.getId(), type);
-        }
-    }
 
     public item: Item;
     public heal: number;

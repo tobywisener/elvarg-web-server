@@ -1,13 +1,12 @@
-import { Player } from "../../../entity/impl/player/Player";
 import { ItemContainer } from "../ItemContainer";
+import { Player } from "../../../entity/impl/player/Player";
 import { StackType } from "../StackType";
-
 
 export class Inventory extends ItemContainer {
 
     public static readonly INTERFACE_ID: number = 3214;
 
-    constructor(player: Player) {
+    constructor(public player: Player) {
         super(player);
     }
 
