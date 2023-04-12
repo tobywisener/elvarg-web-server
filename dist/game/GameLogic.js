@@ -37,8 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GameLogic = void 0;
-var timeunit_1 = require("timeunit");
-var node_schedule_1 = require("node-schedule");
+var agenda_1 = require("agenda");
 var GameLogic = exports.GameLogic = /** @class */ (function () {
     function GameLogic() {
     }
@@ -49,7 +48,14 @@ var GameLogic = exports.GameLogic = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, GameLogic.logicService.schedule(t, 0, timeunit_1.TimeUnit.MILLISECONDS)];
+                        // @ts-ignore
+                        GameLogic.logicService.define('job', { priority: 'high' }, function (job, done) {
+                            t();
+                            done();
+                        });
+                        return [4 /*yield*/, GameLogic.logicService.schedule(new Date(Date.now() + 1), // Date to run the job
+                            'job', // Name of the job
+                            {})];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
@@ -63,11 +69,15 @@ var GameLogic = exports.GameLogic = /** @class */ (function () {
         });
     };
     GameLogic.createLogicService = function () {
-        var executor = new node_schedule_1.default(1);
-        executor.setRejectedExecutionHandler(new node_schedule_1.default());
-        executor.setKeepAliveTime(45, timeunit_1.TimeUnit.SECONDS);
-        executor.allowCoreThreadTimeOut(true);
-        return node_schedule_1.default.unconfigurableScheduledExecutorService(executor);
+        var executor = new agenda_1.Agenda({ maxConcurrency: 1 });
+        executor.defaultConcurrency = function (concurrency) {
+            return executor.maxConcurrency(concurrency);
+        };
+        executor.defaultLockLifetime(45 * 1000);
+        executor.define('job', { concurrency: 1 }, function (_, done) {
+            done();
+        });
+        return executor;
     };
     GameLogic.logicService = GameLogic.createLogicService();
     return GameLogic;

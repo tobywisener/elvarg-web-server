@@ -75,7 +75,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Misc = void 0;
 var decimal_format_1 = require("decimal-format");
 var RandomGen_1 = require("../util/RandomGen");
-var securerandom_1 = require("securerandom");
 var js_joda_1 = require("js-joda");
 var fs_extra_1 = require("fs-extra");
 var path = require("path");
@@ -662,24 +661,14 @@ var Misc = exports.Misc = /** @class */ (function () {
      * @return value between `start` (inclusive) and `end` (inclusive)
      */
     Misc.getRandomExlcuding = function (start, end, excludes) {
-        var e_6, _a;
-        excludes.sort();
-        var random = start + Misc.SECURE_RANDOM.nextInt(end - start + 1 - excludes.length);
-        try {
-            for (var excludes_1 = __values(excludes), excludes_1_1 = excludes_1.next(); !excludes_1_1.done; excludes_1_1 = excludes_1.next()) {
-                var exclude = excludes_1_1.value;
-                if (random < exclude) {
-                    break;
-                }
-                random++;
-            }
+        var _a;
+        if (start > end) {
+            _a = __read([end, start], 2), start = _a[0], end = _a[1];
         }
-        catch (e_6_1) { e_6 = { error: e_6_1 }; }
-        finally {
-            try {
-                if (excludes_1_1 && !excludes_1_1.done && (_a = excludes_1.return)) _a.call(excludes_1);
-            }
-            finally { if (e_6) throw e_6.error; }
+        var range = end - start + 1;
+        var random = start + Math.floor(Math.random() * range);
+        while (excludes.includes(random)) {
+            random = start + Math.floor(Math.random() * range);
         }
         return random;
     };
@@ -699,7 +688,6 @@ var Misc = exports.Misc = /** @class */ (function () {
         '[', ']', '|', '?', '/', '`'
     ];
     Misc.RANDOM = new RandomGen_1.RandomGen();
-    Misc.SECURE_RANDOM = new securerandom_1.SecureRandom();
     Misc.BLOCKED_WORDS = [
         ".com", ".net", ".org", "<img", "@cr", "<img=", ":tradereq:", ":duelreq:",
         "<col=", "<shad="
@@ -711,7 +699,7 @@ var Misc = exports.Misc = /** @class */ (function () {
         's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
         'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6',
         '7', '8', '9', ' ', '!', '?', '.', ',', ':', ';', '(', ')', '-',
-        '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"',
+        '&', '*', '\\', '\'', '@', '#', '+', '=', '£', '$', '%', '"',
         '[', ']'];
     Misc.getDayOfYear = function () {
         var c = new Date();

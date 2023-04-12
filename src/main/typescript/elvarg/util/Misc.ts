@@ -2,7 +2,6 @@ import  DecimalFormat  from 'decimal-format'
 import { Location } from '../game/model/Location';
 import { Player } from '../game/entity/impl/player/Player';
 import { RandomGen } from '../util/RandomGen'
-import { SecureRandom } from 'securerandom';
 import { ZonedDateTime} from 'js-joda'
 import { fs, readFileSync, existsSync   } from 'fs-extra';
 import * as path from 'path';
@@ -32,7 +31,6 @@ export class Misc {
         '[', ']', '|', '?', '/', '`'
     ];
     private static  RANDOM = new RandomGen();
-    private static readonly SECURE_RANDOM = new SecureRandom();
     private static readonly BLOCKED_WORDS = [
         ".com", ".net", ".org", "<img", "@cr", "<img=", ":tradereq:", ":duelreq:",
         "<col=", "<shad="];
@@ -43,7 +41,7 @@ export class Misc {
             's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
             'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6',
             '7', '8', '9', ' ', '!', '?', '.', ',', ':', ';', '(', ')', '-',
-            '&', '*', '\\', '\'', '@', '#', '+', '=', '\243', '$', '%', '"',
+            '&', '*', '\\', '\'', '@', '#', '+', '=', '£', '$', '%', '"',
             '[', ']'];
 
     private static zonedDateTime: ZonedDateTime;
@@ -68,7 +66,7 @@ export class Misc {
         let minutePrefix = minute < 10 ? "0" + minute + "" : "" + minute + "";
         return "" + hourPrefix + ":" + minutePrefix + "";
     }
-    
+
         public static getTimePlayed(totalPlayTime: number): string {
         const sec = Math.floor(totalPlayTime / 1000);
         const h = Math.floor(sec / 3600);
@@ -76,19 +74,19 @@ export class Misc {
         const s = sec % 60;
         return (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
     }
-          
+
           public static getHoursPlayed(totalPlayTime: number): string {
         const sec = Math.floor(totalPlayTime / 1000);
         const h = Math.floor(sec / 3600);
         return (h < 10 ? "0" + h : h) + "h";
     }
-          
+
           public static getMinutesPassed(t: number): number {
         const seconds = Math.floor((t / 1000) % 60);
         const minutes = Math.floor(((t - seconds) / 1000) / 60);
         return minutes;
     }
-          
+
           public static concat(a: any[], b: any[]): any[] {
         const aLen = a.length;
         const bLen = b.length;
@@ -96,7 +94,7 @@ export class Misc {
         c.push(...a, ...b);
         return c;
     }
-          
+
           public static getCloseRandomPlayer(plrs: any[]): any {
         const index = Misc.getRandom(plrs.length - 1);
         if (index > 0) {
@@ -104,7 +102,7 @@ export class Misc {
         }
         return null;
     }
-    
+
           public static getDirection(x: number, y: number): number {
         for (let i = 0; i < 8; i++) {
             if (Misc.DIRECTIONS[i][0] == x && Misc.DIRECTIONS[i][1] == y)
@@ -112,7 +110,7 @@ export class Misc {
         }
         return -1;
     }
-        
+
         public static ucFirst(str: string): string {
         str = str.toLowerCase();
         if (str.length > 1) {
@@ -122,11 +120,11 @@ export class Misc {
         }
         return str;
     }
-        
+
         public static format(num: number): string {
         return num.toLocaleString();
     }
-        
+
     public static formatText(s: string): string {
         for (let i = 0; i < s.length; i++) {
             if (i == 0) {
@@ -150,15 +148,15 @@ export class Misc {
             return "" + j;
         }
     }
-        
+
         public static formatPlayerName(str: string): string {
         return this.formatText(str);
     }
-        
+
         public static insertCommasToNumber(number: string): string {
         return number.length < 4 ? number : this.insertCommasToNumber(number.substring(0, number.length - 3)) + "," + number.substring(number.length - 3, number.length);
     }
-        
+
     public static textUnpack(packedData:number[], size: number): string {
         let decodeBuf: number[] = new Array(4096);
         let idx = 0, highNibble = -1;
@@ -177,7 +175,7 @@ export class Misc {
         }
         return new TextDecoder().decode(new Uint8Array(decodeBuf.slice(0, idx)));
     }
-    
+
     public static anOrAr(s: string): string {
         s = s.toLowerCase();
         if (s === "anchovies" || s === "soft clay" || s === "cheese" || s === "ball of wool" || s === "spice" || s === "steel nails" || s === "snape grass" || s === "coal") {
@@ -199,7 +197,7 @@ export class Misc {
         }
         return "a";
     }
-      
+
     public static textPack(text: string): number[] {
         if (text.length > 80) {
             text = text.substring(0, 80);
@@ -249,7 +247,7 @@ export class Misc {
             return "an";
         return "a";
     }
-        
+
     public static getClasses(packageName: string): Array < any > {
         let classList: Array<any> = [];
         // Add logic to get classes from package name
@@ -270,11 +268,11 @@ export class Misc {
         }
         return classes;
     }
-    
+
     public static removeSpaces(s: string): string {
         return s.replace(/ /g, "");
     }
-    
+
     public static getMinutesElapsed(minute: number, hour: number, day: number, year: number): number {
         let i = new Date();
         if (i.getFullYear() == year) {
@@ -397,20 +395,20 @@ export class Misc {
         const now = new Date().getTime();
         const creationDate = player.getCreationDate().getTime();
         const elapsed = now - creationDate;
-      
+
         const secondsInMilli = 1000;
         const minutesInMilli = secondsInMilli * 60;
         const hoursInMilli = minutesInMilli * 60;
         const daysInMilli = hoursInMilli * 24;
-      
+
         const elapsedDays = Math.floor(elapsed / daysInMilli);
         const elapsedHours = Math.floor((elapsed % daysInMilli) / hoursInMilli);
         const elapsedMinutes = Math.floor((elapsed % hoursInMilli) / minutesInMilli);
         const elapsedSeconds = Math.floor((elapsed % minutesInMilli) / secondsInMilli);
-      
+
         return `${elapsedDays} day(s) : ${elapsedHours} hour(s) : ${elapsedMinutes} minute(s) : ${elapsedSeconds} second(s)`;
     }
-    
+
     public static getTimeLeft = (start: number, timeAmount: number, timeUnit: TimeUnit): number => {
         const duration = moment.duration(Date.now() - start, 'milliseconds');
         const timeUnitDuration = moment.duration(timeAmount, timeUnit);
@@ -434,18 +432,18 @@ export class Misc {
     public static delta(a: Location, b: Location) {
         return { x: b.x - a.x, y: b.y - a.y };
     }
-    
+
         // Picks a random element out of any array type
     public static randomElements<T>(array: T[]) {
         return array[Math.floor(Math.random() * array.length)];
     }
-    
+
         // Picks a random element out of any list type
     public static randomElement<T>(list: T[]) {
         return list[Math.floor(Math.random() * list.length)];
     }
 
-    
+
 
     public static blockedWord(string: string): boolean {
         const BLOCKED_WORDS: string[] = [];
@@ -485,11 +483,11 @@ export class Misc {
         let other = vowel ? "an" : "a";
         return other + " " + name;
     }
-        
+
     public static isValidName(name: string): boolean {
         return Misc.formatNameForProtocol(name).match(/^[a-z0-9_]+$/gi) !== null;
     }
-        
+
     public static stringToLong(string: string): number {
         let l: number = 0;
         for (let i = 0; i < string.length && i < 12; i++) {
@@ -508,7 +506,7 @@ export class Misc {
         }
         return l;
     }
-    
+
     public static getBuffer(file: string): Uint8Array | null {
         try {
             if (!fs.existsSync(file)) {
@@ -525,11 +523,11 @@ export class Misc {
     public static formatNameForProtocol(name: string) : string {
         return name.toLowerCase().replace(" ", "_");
     }
-        
+
     public static formatName(name: string) : string {
         return Misc.fixName(name.replace(" ", "_"));
     }
-        
+
     public static longToString(l: number) : string {
         let i = 0;
         let ac: string[] = new Array(12);
@@ -567,22 +565,22 @@ export class Misc {
         if (text == null) {
           return [];
         }
-      
+
         // Retorna o texto se len for zero ou menor
         if (len <= 0) {
           return [text];
         }
-      
+
         // Retorna o texto se for menor ou igual ao comprimento
         if (text.length <= len) {
           return [text];
         }
-      
+
         const chars = text.split('');
         const lines = [];
         let line = '';
         let word = '';
-      
+
         // Efeitos de texto
         let effects = null;
         for (const effectCode of EFFECTS) {
@@ -593,63 +591,63 @@ export class Misc {
             effects += effectCode;
           }
         }
-      
+
         for (let i = 0; i < chars.length; i++) {
           word += chars[i];
-      
+
           if (chars[i] == ' ') {
             if ((line.length + word.length) > len) {
               let line_ = line;
-      
+
               // Aplica os efeitos
               if (effects != null && !line_.startsWith(effects)) {
                 line_ = effects + line_;
               }
-      
+
               lines.push(line_);
               line = '';
             }
-      
+
             line += word;
             word = '';
           }
         }
-      
+
         // Lidar com quaisquer caracteres extras na palavra atual
         if (word.length > 0) {
           if ((line.length + word.length) > len) {
             let line_ = line;
-      
+
             // Aplica os efeitos
             if (effects != null && !line_.startsWith(effects)) {
               line_ = effects + line_;
             }
-      
+
             lines.push(line_);
             line = '';
           }
           line += word;
         }
-      
+
         // Lidar com linha extra
         if (line.length > 0) {
           let line_ = line;
-      
+
           // Aplica os efeitos
           if (effects != null && !line_.startsWith(effects)) {
             line_ = effects + line_;
           }
-      
+
           lines.push(line_);
         }
-      
+
         return lines;
     }
 
     public static hash(string: string): number {
         return Misc.hash(string.toUpperCase());
     }
-      
+
     public static getUsersProjectRootDirectory(): string {
         const envRootDir = process.cwd();
         const rootDir = resolve('.');
@@ -659,15 +657,15 @@ export class Misc {
           throw new Error('Root dir not found in user directory.');
         }
       }
-      
+
     public static randoms(range: number): number {
         return Math.floor(Math.random() * (range + 1));
     }
-      
+
     public static random(minRange: number, maxRange: number): number {
         return minRange + Misc.random(maxRange, minRange);
     }
-      
+
       /**
        * Get a random number between a range and exclude some numbers.
        * The excludes list MUST BE MODIFIABLE.
@@ -677,18 +675,20 @@ export class Misc {
        * @param excludes list of numbers to be excluded
        * @return value between `start` (inclusive) and `end` (inclusive)
        */
-    public static getRandomExlcuding(start: number, end: number, excludes: number[]): number {
-        excludes.sort();
-      
-        let random = start + Misc.SECURE_RANDOM.nextInt(end - start + 1 - excludes.length);
-        for (const exclude of excludes) {
-          if (random < exclude) {
-            break;
+      public static getRandomExlcuding(start: number, end: number, excludes: number[]): number {
+          if (start > end) {
+              [start, end] = [end, start];
           }
-          random++;
-        }
-        return random;
-    }
+
+          const range = end - start + 1;
+          let random = start + Math.floor(Math.random() * range);
+
+          while (excludes.includes(random)) {
+              random = start + Math.floor(Math.random() * range);
+          }
+
+          return random;
+      }
 
     public static concatWithCollection<T>(array1: T[], array2: T[]): T[] {
         let resultList: T[] = [...array1, ...array2];
