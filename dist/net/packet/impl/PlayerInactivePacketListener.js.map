@@ -1,0 +1,1 @@
+{"version":3,"file":"PlayerInactivePacketListener.js","sourceRoot":"","sources":["../../../../src/main/typescript/elvarg/net/packet/impl/PlayerInactivePacketListener.ts"],"names":[],"mappings":";;;AAIA;IAAA;IAKA,CAAC;IAHG,8CAAO,GAAP,UAAQ,MAAc,EAAE,MAAc;QAClC,sCAAsC;IAC1C,CAAC;IACL,mCAAC;AAAD,CAAC,AALD,IAKC;AALY,oEAA4B"}

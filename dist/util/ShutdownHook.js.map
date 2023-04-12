@@ -1,0 +1,1 @@
+{"version":3,"file":"ShutdownHook.js","sourceRoot":"","sources":["../../src/main/typescript/elvarg/util/ShutdownHook.ts"],"names":[],"mappings":";;;AAAA,uCAAmC;AAInC;IAAA;IAQA,CAAC;IALU,0BAAG,GAAV;QACI,OAAO,CAAC,GAAG,CAAC,yDAAyD,CAAC,CAAC;QACvE,aAAK,CAAC,WAAW,EAAE,CAAC;QACpB,OAAO,CAAC,GAAG,CAAC,2EAA2E,CAAC,CAAC;IAC7F,CAAC;IACL,mBAAC;AAAD,CAAC,AARD,IAQC;AARY,oCAAY"}

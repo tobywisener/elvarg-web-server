@@ -1,0 +1,12 @@
+export enum Flag {
+    CHAT,
+    FORCED_CHAT,
+    FORCED_MOVEMENT,
+    ENTITY_INTERACTION,
+    FACE_POSITION,
+    APPEARANCE,
+    ANIMATION,
+    GRAPHIC,
+    SINGLE_HIT,
+    DOUBLE_HIT,
+}

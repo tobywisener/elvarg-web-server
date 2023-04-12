@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "noEmitOnError": true,
+        "removeComments": false,
+        "sourceMap": true,
+        "target": "es5",
+        "outDir": "dist",
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "downlevelIteration": true
+    },
+    "include": [
+        "./src"
+    ],
+    "typeRoots": [
+        "./node_modules/phaser/types"
+    ],
+    "types": [
+        "Phaser"
+    ]
+}
