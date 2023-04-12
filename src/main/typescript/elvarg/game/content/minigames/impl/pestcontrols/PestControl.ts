@@ -30,7 +30,7 @@ class PestTask extends Task{
     execute(): void {
         this.execFunc();
     }
-    
+
 }
 
 export class PestControl implements Minigame {
@@ -101,7 +101,7 @@ export class PestControl implements Minigame {
 
     public static readonly NOVICE_LOBBY_TASK = new PestTask(1, PestControlBoat.NOVICE.getName(), () => {
         const novice_boat = PestControlBoat.NOVICE;
-        let noviceWaitTicks = this.DEFAULT_BOAT_WAITING_TICKS;
+        let noviceWaitTicks = PestControl.DEFAULT_BOAT_WAITING_TICKS;
 
         const playersReady = novice_boat.getQueue().length;
 
@@ -110,40 +110,40 @@ export class PestControl implements Minigame {
             return;
         }
 
-        if (playersReady < this.PLAYERS_REQUIRED) return;
+        if (playersReady < PestControl.PLAYERS_REQUIRED) return;
 
         if (playersReady >= 10 && Math.random() <= 0.15) {
-            this.sendSquireMessage("We're about to launch!", novice_boat);
+            PestControl.sendSquireMessage("We're about to launch!", novice_boat);
         }
 
         noviceWaitTicks--;
 
         if (noviceWaitTicks === 0 || playersReady >= 25) {
-            noviceWaitTicks = this.DEFAULT_BOAT_WAITING_TICKS;
-            this.begin(novice_boat);
+            noviceWaitTicks = PestControl.DEFAULT_BOAT_WAITING_TICKS;
+            PestControl.begin(novice_boat);
         }
     });
 
     public static readonly INTERMEDIATE_LOBBY_TASK = new PestTask(1, PestControlBoat.INTERMEDIATE.name, () => {
         const intermediate_boat = PestControlBoat.INTERMEDIATE;
-        let intermediateWaitTicks = this.DEFAULT_BOAT_WAITING_TICKS;
+        let intermediateWaitTicks = PestControl.DEFAULT_BOAT_WAITING_TICKS;
 
         const playersReady = intermediate_boat.getQueue().length;
 
         if (playersReady === 0) {
-            this.INTERMEDIATE_LOBBY_TASK.stop();
+            PestControl.INTERMEDIATE_LOBBY_TASK.stop();
             return;
         }
 
         if (playersReady >= 10 && Math.random() <= .15) {
-            this.sendSquireMessage("We're about to launch!", intermediate_boat);
+            PestControl.sendSquireMessage("We're about to launch!", intermediate_boat);
         }
 
         intermediateWaitTicks--;
 
         if (intermediateWaitTicks === 0 || playersReady >= 25) {
-            intermediateWaitTicks = this.DEFAULT_BOAT_WAITING_TICKS;
-            this.begin(intermediate_boat);
+            intermediateWaitTicks = PestControl.DEFAULT_BOAT_WAITING_TICKS;
+            PestControl.begin(intermediate_boat);
         }
     });
 
@@ -212,13 +212,13 @@ export class PestControl implements Minigame {
         ], DialogueExpression.DISTRESSED);
 
         /**
-        
+
         gameStarted = true;
         gameTimer = 400;
         */
     }
     /**
-     
+
     Determines whether the game is still active.
     @return
     */
@@ -244,11 +244,11 @@ export class PestControl implements Minigame {
         this.spawned_npcs.push(npc);
         World.getAddNPCQueue().push(npc);
     }
-    
+
     public static isPortalsDead(): boolean {
         return this.portalsKilled === 4;
     }
-    
+
     public static isPortal(id: number, shielded: boolean): boolean {
         const portalIds: number[] = [];
         for (const d of Object.values(PestControlPortalData)) {
@@ -387,7 +387,7 @@ export class PestControl implements Minigame {
         }
         return false;
     }
-        
+
     private static isKnightDead(): boolean {
         return this.knight == null || (this.knight != null && this.knight.getHitpoints() == 0);
     }
@@ -451,7 +451,7 @@ export class PestControl implements Minigame {
     private static isQueued(player: Player, boat: PestControlBoat): boolean {
         return boat.getQueue().includes(player);
     }
-        
+
     private static addToQueue(player: Player, boat: PestControlBoat) {
         if (PestControl.isQueued(player, boat)) {
             console.error("Error.. adding " + player.getUsername() + " to " + boat.getName() + " list.. already on the list.");

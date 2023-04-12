@@ -483,6 +483,7 @@ export class Bar {
         (SmithableEquipment.ADAMANT_ITEMS)
     );
 
+    // TODO - Populate smeltables map
     private static smeltables: Map<number, Bar> = new Map<number, Bar>();
     public bar: number;
     public ores: RequiredItem[];
@@ -491,12 +492,6 @@ export class Bar {
     public frame: number;
     public buttons: number[][];
     public items?: SmithableEquipment
-
-    static {
-        for (const s of Object.values(Bar)) {
-            Bar.smeltables.set(s.bar, s);
-        }
-    }
 
     constructor(
         bar: number,
@@ -552,13 +547,13 @@ export class Bar {
 export class EquipmentMaking {
 
     /**
-    
+
     The interface used for creating equipment using the
     Smithing skill.
     */
     public static readonly EQUIPMENT_CREATION_INTERFACE_ID = 994;
     /**
-    
+
     The interface ids used for selecting an item to create in the
     {@code EQUIPMENT_CREATION_INTERFACE_ID}.
     */

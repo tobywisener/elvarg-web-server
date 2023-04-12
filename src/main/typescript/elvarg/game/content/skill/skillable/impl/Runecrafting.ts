@@ -388,13 +388,8 @@ export class Rune {
     public static readonly DEATH_RUNE = new Rune(560, 65, 16, 14907, true);
     public static readonly BLOOD_RUNE = new Rune(565, 75, 27, 27978, true);
 
+    // TODO - Populate runes map
     static runes: Map<number, Rune> = new Map<number, Rune>();
-
-    static {
-        for (const rune of Object.values(Rune)) {
-            this.runes.set(rune.getObjectId(), rune);
-        }
-    }
 
     private runeID: number;
     private levelReq: number;

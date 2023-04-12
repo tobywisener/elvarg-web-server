@@ -35,13 +35,9 @@ export class Skill {
         Skill.MAGIC
     ]);
 
+    // TODO - Populate skill map
     private static readonly skillMap: Map<number, Skill> = new Map<number, Skill>();
 
-    static {
-        for (const skill of Object.values(Skill)) {
-            Skill.skillMap.set(skill.button, skill);
-        }
-    }
     /**
      * The {@link Skill}'s chatbox interface
      * The interface which will be sent
@@ -80,7 +76,7 @@ export class Skill {
     }
 
     /**
-    
+
     Gets the {@link Skill}'s chatbox interface.
     @return The interface which will be sent on levelup.
     */
@@ -88,7 +84,7 @@ export class Skill {
         return this.chatboxInterface;
     }
     /**
-    
+
     Gets the {@link Skill}'s button id.
     @return The button for this skill.
     */
@@ -96,7 +92,7 @@ export class Skill {
         return this.button;
     }
     /**
-    
+
     Gets the {@link Skill}'s name.
     @return The {@link Skill}'s name in a suitable format.
     */

@@ -389,7 +389,7 @@ export class PrayerHandler {
             }
             let bonus = player.getBonusManager().getOtherBonus()[BonusManager.PRAYER];
             drainPerTick /= (1 + (0.0333 * bonus));
-        
+
             pointDrain += drainPerTick;
             let drainTreshold = Math.floor(pointDrain);
             if (drainTreshold >= 1) {
@@ -407,7 +407,7 @@ export class PrayerHandler {
                 }
             }
             player.setPrayerPointDrain(pointDrain);
-    
+
             function stop() {
                 player.setPrayerPointDrain(0);
                 player.setDrainingPrayer(false);
@@ -484,21 +484,12 @@ export class PrayerData {
     /**
        * Contains the PrayerData with their corresponding prayerId.
        */
+    // TODO - Populate prayerData map
     public static prayerData: Map<number, PrayerData> = new Map<number, PrayerData>();
     /**
      * Contains the PrayerData with their corresponding buttonId.
      */
     public static actionButton: Map<number, PrayerData> = new Map<number, PrayerData>();
-
-    /**
-     * Populates the prayerId and buttonId maps.
-     */
-    static {
-        for (const pd of Object.values(PrayerData)) {
-            this.prayerData.set(pd.ordinal(), pd);
-            this.actionButton.set(pd.buttonId, pd);
-        }
-    }
 
     /**
      * The prayer's level requirement for player to be able to activate it.
@@ -514,7 +505,7 @@ export class PrayerData {
      */
     public configId: number;
     /**
-     * The rate of which the player's prayer points will be drained at 
+     * The rate of which the player's prayer points will be drained at
      * per minute.
      */
     public drainRate: number;

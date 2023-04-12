@@ -65,10 +65,6 @@ export class Lanthus extends NPC implements NPCInteraction {
         ShopCurrencies.CASTLE_WARS_TICKET
     );
 
-    static {
-        ShopManager.shops.set(Lanthus.CASTLE_WARS_SHOP.getId(), Lanthus.CASTLE_WARS_SHOP);
-    }
-
     constructor(id: number, position: Location) {
         super(id, position);
         this.buildDialogues();

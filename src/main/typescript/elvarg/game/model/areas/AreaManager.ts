@@ -20,7 +20,7 @@ import { CastleWarsLobbyArea } from "./impl/castlewars/CastleWarsLobbyArea";
 export class AreaManager {
 
     public static areas: Area[] = [];
-
+/* TODO: Fix Areas
     static {
         AreaManager.areas.push(new BarrowsArea());
         AreaManager.areas.push(new DuelArenaArea());
@@ -35,7 +35,7 @@ export class AreaManager {
         AreaManager.areas.push(PestControl.NOVICE_BOAT_AREA);
         AreaManager.areas.push(PestControl.OUTPOST_AREA);
     }
-
+*/
     /**
      * Processes areas for the given character.
      *

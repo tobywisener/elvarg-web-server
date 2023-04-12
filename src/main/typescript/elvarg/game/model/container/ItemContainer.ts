@@ -5,10 +5,9 @@ import { Bank } from "./impl/Bank";
 import { Inventory } from "./impl/Inventory";
 import { Equipment } from "./impl/Equipment";
 import { ItemDefinition } from "../../definition/ItemDefinition";
-import { Task } from "../../task/Task";
 import { ItemOnGroundManager } from "../../entity/impl/grounditem/ItemOnGroundManager";
 import { TaskManager } from "../../task/TaskManager";
-
+import {ItemContainerTask} from "../../task/impl/ItemContainerTask";
 
 export abstract class ItemContainer {
     public player: Player;
@@ -651,15 +650,4 @@ export abstract class ItemContainer {
         return slot >= 0 && slot < this.items.length && this.items[slot] != null;
     }
 }
-
-class ItemContainerTask extends Task {
-    constructor(private readonly execFunc: Function) {
-        super(1);
-    }
-    execute(): void {
-        this.execFunc();
-    }
-
-}
-
 

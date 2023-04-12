@@ -246,13 +246,8 @@ class FinishedPotion {
     FLETCHING_POTION = new FinishedPotion(14848, 103, 11525, 58, 105);
     ANTIPOISON_PLUS = new FinishedPotion(5945, 3002, 6049, 68, 15);
 
+    // TODO - populate map for potions
     static potions: Map<number, FinishedPotion> = new Map();
-    static {
-        for (const potion of Object.values(FinishedPotion)) {
-            this.potions.set(potion.finishedPotion, potion);
-            this.potions.set(potion.itemNeeded, potion);
-        }
-    }
 
     finishedPotion: number;
     unfinishedPotion: number;
@@ -269,15 +264,15 @@ class FinishedPotion {
     }
 
     public static forId = (usedItem: number, usedOn: number): FinishedPotion | undefined => {
-        let potion = this.potions.get(usedItem);
+        let potion = FinishedPotion.potions.get(usedItem);
         if (potion != null) {
-            if (this.requiredItems(potion, usedItem, usedOn)) {
+            if (FinishedPotion.requiredItems(potion, usedItem, usedOn)) {
                 return potion;
             }
         }
-        potion = this.potions.get(usedOn);
+        potion = FinishedPotion.potions.get(usedOn);
         if (potion != null) {
-            if (this.requiredItems(potion, usedItem, usedOn)) {
+            if (FinishedPotion.requiredItems(potion, usedItem, usedOn)) {
                 return potion;
             }
         }
@@ -339,15 +334,8 @@ class PotionDose {
     SERUM_207 = new PotionDose(3414, 3412, 3410, 3408, ItemIdentifiers.VIAL_OF_WATER, "Serum 207");
     COMBAT = new PotionDose(9745, 9743, 9741, 9739, ItemIdentifiers.VIAL_OF_WATER, "Combat");
 
+    // TODO - Populate map for potions
     static potions = new Map<number, PotionDose>();
-    static {
-        for (const potion of Object.values(PotionDose)) {
-            this.potions.set(potion.oneDosePotionID, potion);
-            this.potions.set(potion.twoDosePotionID, potion);
-            this.potions.set(potion.threeDosePotionID, potion);
-            this.potions.set(potion.fourDosePotionID, potion);
-        }
-    }
 
     oneDosePotionID: number;
     twoDosePotionID: number;

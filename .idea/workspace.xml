@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="286c1503-b08d-4a5e-bcd8-fae14731a9d8" name="Default Changelist" comment="" />
+    <list default="true" id="286c1503-b08d-4a5e-bcd8-fae14731a9d8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/task/impl/ItemContainerTask.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/novo_elvargserver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/novo_elvargserver.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Duelling.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Duelling.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Emotes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Emotes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Food.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/Food.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/PrayerHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/PrayerHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/combat/magic/Autocasting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/combat/magic/Autocasting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/combat/ranged/RangedData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/combat/ranged/RangedData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/minigames/impl/pestcontrols/PestControl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/minigames/impl/pestcontrols/PestControl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Crafting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Crafting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Fletching.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Fletching.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Herblore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Herblore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Prayer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Prayer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Runecrafting.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Runecrafting.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Smithing.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Smithing.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Thieving.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/content/skill/skillable/impl/Thieving.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/npc/impl/Lanthus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/npc/impl/Lanthus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/player/persistence/dynamodb/DynamoDBPlayerPersistence.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/player/persistence/dynamodb/DynamoDBPlayerPersistence.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/playerbot/fightstyle/impl/MidTribridMaxFighterPreset.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/entity/impl/playerbot/fightstyle/impl/MidTribridMaxFighterPreset.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/Skill.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/Skill.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/Skillcape.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/Skillcape.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/areas/AreaManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/areas/AreaManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/commands/impl/OpenThread.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/commands/impl/OpenThread.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/ItemContainer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/ItemContainer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Bank.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Bank.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Equipment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Equipment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Inventory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/Inventory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/PriceChecker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/container/impl/PriceChecker.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/dialogues/DialogueManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/game/model/dialogues/DialogueManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/typescript/elvarg/net/packet/PacketConstants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/typescript/elvarg/net/packet/PacketConstants.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="2OK3qyB9VTWqFCcB0rtpsCY2TtZ" />
   <component name="ProjectViewState">
@@ -30,10 +79,22 @@
       <option name="presentableId" value="Default" />
       <updated>1681295642272</updated>
       <workItem from="1681295643536" duration="2965000" />
+      <workItem from="1681314057925" duration="4150000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

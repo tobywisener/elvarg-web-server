@@ -4,7 +4,6 @@ import { Player } from "../../../entity/impl/player/Player";
 import { StackType } from "../StackType";
 import { WeaponInterfaces } from "../../../content/combat/WeaponInterfaces";
 import { ItemDefinition } from "../../../definition/ItemDefinition";
-import { Inventory } from "./Inventory";
 
 export class Equipment extends ItemContainer {
 
@@ -27,7 +26,7 @@ export class Equipment extends ItemContainer {
     public static AMMUNITION_SLOT = 13;
     public static NO_ITEM = new Item(-1);
     static ITEM_COUNT = 10;
-    
+
     constructor(public player: Player) {
         super(player);
     }
@@ -50,20 +49,20 @@ export class Equipment extends ItemContainer {
         }
         return count;
     }
-    
+
     public capacity(): number {
         return 14;
     }
-    
+
     public stackType(): StackType {
         return StackType.DEFAULT;
     }
-    
+
     public refreshItems(): ItemContainer {
         this.getPlayer().getPacketSender().sendItemContainer(this, Equipment.INVENTORY_INTERFACE_ID);
         return this;
     }
-    
+
     public wearingNexAmours(): boolean {
         const head = this.player.getEquipment().getItems()[Equipment.HEAD_SLOT].getId();
         const body = this.player.getEquipment().getItems()[Equipment.BODY_SLOT].getId();
@@ -73,13 +72,13 @@ export class Equipment extends ItemContainer {
         const virtus = head === 14014 && body === 14015 && legs === 14016;
         return torva || pernix || virtus;
     }
-    
+
     public wearingHalberd(): boolean {
         const itemId = this.getPlayer().getEquipment().getItems()[Equipment.WEAPON_SLOT].getId();
         const itemDef = ItemDefinition.forId(itemId);
         return itemDef != null && itemDef.getName().toLowerCase().endsWith("halberd");
     }
-    
+
     public properEquipmentForWilderness(): boolean {
         let count = 0;
         for (const item of this.getValidItems()) {
@@ -88,24 +87,23 @@ export class Equipment extends ItemContainer {
         }
         return count >= 3;
     }
-    
+
     public hasStaffEquipped(): boolean {
         const staff = this.get(Equipment.WEAPON_SLOT);
         return (staff != null && (this.player.getWeapon() == WeaponInterfaces.STAFF
                 || this.player.getWeapon() == WeaponInterfaces.ANCIENT_STAFF));
     }
-    
+
     public getWeapon(): Item {
         return this.get(Equipment.WEAPON_SLOT);
     }
-    
+
     public hasCastleWarsBracelet(): boolean {
         const hands = this.get(Equipment.HANDS_SLOT);
         return hands != null && hands.getId() >= 11079 && hands.getId() <= 11083;
     }
-    
+
     public hasGodsword(): boolean {
         return this.get(Equipment.WEAPON_SLOT) != null && this.get(Equipment.WEAPON_SLOT).getDefinition().getName().toLowerCase().includes("godsword");
     }
 }
-    

@@ -22,6 +22,7 @@ import { MovementQueue } from "../../../../../model/movement/MovementQueue";
 import { RandomGen } from "../../../../../../util/RandomGen";
 import { TimerKey } from "../../../../../../util/timers/TimerKey";
 import { ItemIdentifiers } from "../../../../../../util/ItemIdentifiers";
+import {Misc} from "../../../../../../util/Misc";
 
 
 class MidCombatSwitch extends CombatSwitch {
@@ -103,7 +104,7 @@ export class MidTribridMaxFighterPreset implements FighterPreset {
     public static COMBAT_ACTIONS: CombatAction[] = [
         // Slower
         new MidCombatAction(() => {
-            return this.RANDOM.getInclusive(0, 4) != 2;
+            return Misc.getRandom(4) != 2;
         }),
 
         // OverHead prayers

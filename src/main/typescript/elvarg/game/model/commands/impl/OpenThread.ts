@@ -11,7 +11,7 @@ export class OpenThread implements Command {
         let ID = parseInt(parts[1]);
         try {
             let url = new URL("https://www.deadlypkers.net/server_data/fetch_thread_link.php?ID=" + ID);
-            let con = await fetch(url);
+            let con = await fetch(url.toString());
             let data = await con.text();
             if (data) {
                 player.getPacketSender().sendURL(data);

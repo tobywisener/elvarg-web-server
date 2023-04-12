@@ -15,8 +15,8 @@ class PrayerTask extends Task{
 
     execute(): void {
         this.execFunc();
-    } 
-    
+    }
+
 }
 
 export class Prayer {
@@ -121,30 +121,25 @@ export class BuriableBone {
     WYVERN_BONES = { id: 6816, xp: 72 };
     LAVA_DRAGON_BONES = { id: 11943, xp: 85 };
 
+    // TODO - Populate bones map
     private static bones: Map<number, BuriableBone> = new Map<number, BuriableBone>();
 
-    static {
-      for (const b of Object.values(BuriableBone)) {
-        BuriableBone.bones.set(b.getBoneID(), b);
-      }
-    }
-  
     private boneId: number;
     private xp: number;
-  
+
     constructor(boneId: number, buryXP: number) {
       this.boneId = boneId;
       this.xp = buryXP;
     }
-  
+
     public static forId(itemId: number): BuriableBone | undefined {
       return BuriableBone.bones.get(itemId);
     }
-  
+
     public getBoneID(): number {
       return this.boneId;
     }
-  
+
     public getXp(): number {
       return this.xp;
     }

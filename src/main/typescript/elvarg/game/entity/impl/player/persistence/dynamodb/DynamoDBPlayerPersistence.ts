@@ -6,7 +6,7 @@ import * as AWS from "aws-sdk";
 import { DynamoDbEnhancedClient, DynamoDbTable } from 'dynamodb-enhanced'
 import { PlayerSaveRecord } from "./PlayerSaveRecord";
 import { Schema } from '@aws/dynamodb-data-marshaller';
-import { TableSchema } from 'tableschema'
+import { Table } from 'tableschema';
 
 
 
@@ -15,7 +15,7 @@ export class DynamoDBPlayerPersistence extends PlayerPersistence {
     private static enhancedClient = new DynamoDbEnhancedClient({ client: DynamoDBPlayerPersistence.dynamoDbClient });
     private static playerTableName = process.env.PLAYER_TABLE_NAME;
 
-    private static readonly PLAYER_SAVE_TABLE_SCHEMA = TableSchema.fromObject(PlayerSaveRecord);
+    //private static readonly PLAYER_SAVE_TABLE_SCHEMA = Table.read(PlayerSaveRecord);
 
 
     public save(player: Player): void {
@@ -26,7 +26,7 @@ export class DynamoDBPlayerPersistence extends PlayerPersistence {
         const playerSave = PlayerSave.fromPlayer(player);
         const playerTable: typeof DynamoDbTable = DynamoDBPlayerPersistence.enhancedClient.table(
             DynamoDBPlayerPersistence.playerTableName,
-            DynamoDBPlayerPersistence.PLAYER_SAVE_TABLE_SCHEMA
+            //DynamoDBPlayerPersistence.PLAYER_SAVE_TABLE_SCHEMA
         );
 
         playerTable.putItem({
@@ -39,7 +39,7 @@ export class DynamoDBPlayerPersistence extends PlayerPersistence {
     public load(username: string): PlayerSave | null {
         const playerTable: typeof DynamoDbTable = DynamoDBPlayerPersistence.enhancedClient.table(
             DynamoDBPlayerPersistence.playerTableName,
-            DynamoDBPlayerPersistence.PLAYER_SAVE_TABLE_SCHEMA
+            //DynamoDBPlayerPersistence.PLAYER_SAVE_TABLE_SCHEMA
         );
 
         const playerSaveRecord = playerTable.getItem({ partitionKey: { username } });
