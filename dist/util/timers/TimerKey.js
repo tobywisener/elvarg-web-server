@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TimerKey = void 0;
 var Misc_1 = require("../Misc");
-var TimerKey = exports.TimerKey = /** @class */ (function () {
+var TimerKey = /** @class */ (function () {
     function TimerKey(ticks) {
         this.ticks = ticks;
     }
@@ -22,4 +22,5 @@ var TimerKey = exports.TimerKey = /** @class */ (function () {
     TimerKey.BOT_WAIT_FOR_PLAYERS = new TimerKey(Misc_1.Misc.getTicks(180 /* 3 minutes */));
     return TimerKey;
 }());
+exports.TimerKey = TimerKey;
 //# sourceMappingURL=TimerKey.js.map

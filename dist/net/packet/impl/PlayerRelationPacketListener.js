@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerRelationPacketListener = void 0;
-var World_1 = require("../../../game/World");
 var PacketConstants_1 = require("../PacketConstants");
-var Misc_1 = require("../../../util/Misc");
 var PlayerRelationPacketListener = /** @class */ (function () {
     function PlayerRelationPacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     PlayerRelationPacketListener.prototype.execute = function (player, packet) {
         try {
             var username = packet.readLong();
@@ -29,13 +28,12 @@ var PlayerRelationPacketListener = /** @class */ (function () {
                 case PacketConstants_1.PacketConstants.SEND_PM_OPCODE:
                     var size = packet.getSize();
                     var message = packet.readBytes(size);
-                    var friend = World_1.World.getPlayerByName(Misc_1.Misc.formatText(Misc_1.Misc.longToString(username)).replace("_", " "));
-                    if (friend) {
-                        player.getRelations().message(friend, new Uint8Array(message), size);
-                    }
-                    else {
-                        player.getPacketSender().sendMessage("That player is offline.");
-                    }
+                    // let friend = World.getPlayerByName(Misc.formatText(Misc.longToString(username)).replace("_", " "));
+                    // if (friend) {
+                    //     player.getRelations().message(friend, new Uint8Array(message), size);
+                    // } else {
+                    player.getPacketSender().sendMessage("That player is offline.");
+                    // }
                     break;
             }
         }

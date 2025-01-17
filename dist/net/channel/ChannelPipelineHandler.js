@@ -1,4 +1,10 @@
 "use strict";
+// import { PlayerSession } from "../PlayerSession";
+// import { ChannelFilter } from "./ChannelFilter";
+// import { ChannelEventHandler } from "./ChannelEventHandler";
+// import { LoginDecoder } from "../codec/LoginDecoder";
+// import { LoginEncoder } from "../codec/LoginEncoder";
+// import { NetworkConstants } from "../NetworkConstants";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,8 +15,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -37,41 +43,86 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChannelPipelineHandler = void 0;
+// const server = require("http").createServer();
+// const io = require("socket.io")(server);
+// /**
+// Handles a channel's events.
+// */
+// export class ChannelPipelineHandler {
+//   /*
+//     The part of the pipeline that limits connections and checks for any banned hosts.
+//     */
+//   private readonly FILTER: ChannelFilter = new ChannelFilter();
+//   private socketServer = new io(); // Criar um objeto socket.Server
+//   /**
+//     The part of the pipeline that handles exceptions caught, channels being read, inactive
+//     channels, and channel-triggered events.
+//     */
+//   private readonly HANDLER: ChannelEventHandler = new ChannelEventHandler(
+//     this.socketServer
+//   );
+//   public async initChannel(channel: any): Promise<void> {
+//     const pipeline = channel.pipeline();
+//     channel
+//       .attr(NetworkConstants.SESSION_KEY)
+//       .setIfAbsent(new PlayerSession(channel));
+//     pipeline.addLast("channel-filter", this.FILTER);
+//     pipeline.addLast("decoder", new LoginDecoder());
+//     pipeline.addLast("encoder", new LoginEncoder());
+//     pipeline.addLast(
+//       "timeout",
+//       new io.Server({ pingTimeout: NetworkConstants.SESSION_TIMEOUT })
+//     );
+//     pipeline.addLast("channel-handler", this.HANDLER);
+//   }
+// }
+var socket_io_1 = require("socket.io");
 var PlayerSession_1 = require("../PlayerSession");
 var ChannelFilter_1 = require("./ChannelFilter");
 var ChannelEventHandler_1 = require("./ChannelEventHandler");
 var LoginDecoder_1 = require("../codec/LoginDecoder");
 var LoginEncoder_1 = require("../codec/LoginEncoder");
-var io = require("socket.io");
 var NetworkConstants_1 = require("../NetworkConstants");
+var http = require("http"); // Use proper import for the HTTP server
+// Create an HTTP server
+var server = http.createServer();
+// Create a Socket.IO server instance
+var ioServer = new socket_io_1.Server(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"],
+    },
+});
 /**
-
-Handles a channel's events.
-*/
+ * Handles a channel's events.
+ */
 var ChannelPipelineHandler = /** @class */ (function () {
     function ChannelPipelineHandler() {
-        /*
-        The part of the pipeline that limits connections and checks for any banned hosts.
-        */
-        this.FILTER = new ChannelFilter_1.ChannelFilter();
-        this.socketServer = new io(); // Criar um objeto socket.Server
         /**
-        
-        The part of the pipeline that handles exceptions caught, channels being read, inactive
-        channels, and channel-triggered events.
-        */
-        this.HANDLER = new ChannelEventHandler_1.ChannelEventHandler(this.socketServer);
+         * The part of the pipeline that limits connections and checks for any banned hosts.
+         */
+        this.FILTER = new ChannelFilter_1.ChannelFilter();
+        // Pass the Socket.IO server to the handler
+        this.HANDLER = new ChannelEventHandler_1.ChannelEventHandler(ioServer);
     }
+    /**
+     * Initialize the channel pipeline.
+     */
     ChannelPipelineHandler.prototype.initChannel = function (channel) {
         return __awaiter(this, void 0, void 0, function () {
             var pipeline;
             return __generator(this, function (_a) {
                 pipeline = channel.pipeline();
-                channel.attr(NetworkConstants_1.NetworkConstants.SESSION_KEY).setIfAbsent(new PlayerSession_1.PlayerSession(channel));
+                // Ensure the session key is set for the channel
+                channel
+                    .attr(NetworkConstants_1.NetworkConstants.SESSION_KEY)
+                    .setIfAbsent(new PlayerSession_1.PlayerSession(channel));
+                // Add handlers to the pipeline
                 pipeline.addLast("channel-filter", this.FILTER);
                 pipeline.addLast("decoder", new LoginDecoder_1.LoginDecoder());
                 pipeline.addLast("encoder", new LoginEncoder_1.LoginEncoder());
-                pipeline.addLast("timeout", new io.Server({ pingTimeout: NetworkConstants_1.NetworkConstants.SESSION_TIMEOUT }));
+                pipeline.addLast("timeout", ioServer // Use the initialized Socket.IO server
+                );
                 pipeline.addLast("channel-handler", this.HANDLER);
                 return [2 /*return*/];
             });
@@ -80,4 +131,8 @@ var ChannelPipelineHandler = /** @class */ (function () {
     return ChannelPipelineHandler;
 }());
 exports.ChannelPipelineHandler = ChannelPipelineHandler;
+// // Start the server
+// server.listen(3000, () => {
+//   console.log("Server is running on http://localhost:3000");
+// });
 //# sourceMappingURL=ChannelPipelineHandler.js.map

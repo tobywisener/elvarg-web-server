@@ -28,7 +28,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerPunishment = void 0;
 var Misc_1 = require("./Misc");
 var fs_extra_1 = require("fs-extra");
-var PlayerPunishment = exports.PlayerPunishment = /** @class */ (function () {
+var PlayerPunishment = /** @class */ (function () {
     function PlayerPunishment() {
     }
     PlayerPunishment.init = function () {
@@ -135,4 +135,5 @@ var PlayerPunishment = exports.PlayerPunishment = /** @class */ (function () {
     PlayerPunishment.AccountsMuted = [];
     return PlayerPunishment;
 }());
+exports.PlayerPunishment = PlayerPunishment;
 //# sourceMappingURL=PlayerPunishment.js.map

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NetworkConstants = void 0;
-var NetworkConstants = exports.NetworkConstants = /** @class */ (function () {
+var NetworkConstants = /** @class */ (function () {
     function NetworkConstants() {
     }
     NetworkConstants.GAME_PORT = 49595;
@@ -18,4 +18,5 @@ var NetworkConstants = exports.NetworkConstants = /** @class */ (function () {
     NetworkConstants.PACKET_PROCESS_LIMIT = 30;
     return NetworkConstants;
 }());
+exports.NetworkConstants = NetworkConstants;
 //# sourceMappingURL=NetworkConstants.js.map

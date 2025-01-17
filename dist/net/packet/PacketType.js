@@ -19,5 +19,5 @@ var PacketType;
      * A variable packet where the size is described by a word.
      */
     PacketType[PacketType["VARIABLE_SHORT"] = 3] = "VARIABLE_SHORT";
-})(PacketType = exports.PacketType || (exports.PacketType = {}));
+})(PacketType || (exports.PacketType = PacketType = {}));
 //# sourceMappingURL=PacketType.js.map

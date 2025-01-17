@@ -1,28 +1,30 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TradeRequestPacketListener = void 0;
-var World_1 = require("../../../game/World");
-var PlayerStatus_1 = require("../../../game/model/PlayerStatus");
+// import { World } from "../../../game/World";
+// import { PlayerStatus } from "../../../game/model/PlayerStatus";
 var TradeRequestPacketListener = /** @class */ (function () {
     function TradeRequestPacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     TradeRequestPacketListener.prototype.execute = function (player, packet) {
         var index = packet.readLEShort();
-        if (index > World_1.World.getPlayers().sizeReturn() || index < 0) {
-            return;
-        }
-        var target = World_1.World.getPlayers()[index];
-        if (target == null) {
-            return;
-        }
-        if (!target.getLocation().isWithinDistance(player.getLocation(), 20)) {
-            return;
-        }
-        if (player.getHitpoints() <= 0 || !player.isRegistered() || target.getHitpoints() <= 0 || !target.isRegistered()) {
-            return;
-        }
-        player.getMovementQueue().walkToEntity(target, function () { return TradeRequestPacketListener.sendRequest(player, target); });
+        // if (index > World.getPlayers().sizeReturn() || index < 0) {
+        //     return;
+        // }
+        // let target = World.getPlayers()[index];
+        // if (target == null) {
+        //     return;
+        // }
+        // if (!target.getLocation().isWithinDistance(player.getLocation(), 20)) {
+        //     return;
+        // }
+        // if (player.getHitpoints() <= 0 || !player.isRegistered() || target.getHitpoints() <= 0 || !target.isRegistered()) {
+        //     return;
+        // }
+        // player.getMovementQueue().walkToEntity(target, () => TradeRequestPacketListener.sendRequest(player, target));
     };
+    // static sendRequest(player: Player, target: Player) {
     TradeRequestPacketListener.sendRequest = function (player, target) {
         if (player.busy()) {
             player.getPacketSender().sendMessage("You cannot do that right now.");
@@ -30,9 +32,9 @@ var TradeRequestPacketListener = /** @class */ (function () {
         }
         if (target.busy()) {
             var msg = "That player is currently busy.";
-            if (target.getStatus() == PlayerStatus_1.PlayerStatus.TRADING) {
-                msg = "That player is currently trading with someone else.";
-            }
+            // if (target.getStatus() == PlayerStatus.TRADING) {
+            //     msg = "That player is currently trading with someone else.";
+            // }
             player.getPacketSender().sendMessage(msg);
             return;
         }

@@ -27,7 +27,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Buffer = void 0;
 var BigInteger = require('big-integer');
-var Buffer = exports.Buffer = /** @class */ (function () {
+var Buffer = /** @class */ (function () {
     function Buffer(payload) {
         this.payload = payload;
         this.currentPosition = 0;
@@ -337,4 +337,5 @@ var Buffer = exports.Buffer = /** @class */ (function () {
         0x7fffffff, -1];
     return Buffer;
 }());
+exports.Buffer = Buffer;
 //# sourceMappingURL=Buffer.js.map

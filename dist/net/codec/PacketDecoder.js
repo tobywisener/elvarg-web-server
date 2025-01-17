@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacketDecoder = void 0;
 var Packet_1 = require("../packet/Packet");
 var NetworkConstants_1 = require("../NetworkConstants");
-var PacketDecoder = exports.PacketDecoder = /** @class */ (function () {
+var PacketDecoder = /** @class */ (function () {
     function PacketDecoder(random, io) {
         this.io = io;
         this.random = random;
@@ -54,4 +54,5 @@ var PacketDecoder = exports.PacketDecoder = /** @class */ (function () {
     ];
     return PacketDecoder;
 }());
+exports.PacketDecoder = PacketDecoder;
 //# sourceMappingURL=PacketDecoder.js.map

@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PasswordUtil = void 0;
 var bcrypt_1 = require("bcrypt");
-var PasswordUtil = exports.PasswordUtil = /** @class */ (function () {
+var PasswordUtil = /** @class */ (function () {
     function PasswordUtil() {
     }
     PasswordUtil.generatePasswordHashWithSalt = function (password) {
@@ -83,4 +83,5 @@ var PasswordUtil = exports.PasswordUtil = /** @class */ (function () {
     PasswordUtil.pbkdf2 = 10;
     return PasswordUtil;
 }());
+exports.PasswordUtil = PasswordUtil;
 //# sourceMappingURL=PasswordUtil.js.map

@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SwitchItemSlotPacketListener = void 0;
-var Bank_1 = require("../../../game/model/container/impl/Bank");
-var Inventory_1 = require("../../../game/model/container/impl/Inventory");
+// import { Bank } from "../../../game/model/container/impl/Bank";
+// import { Inventory } from "../../../game/model/container/impl/Inventory";
 var SwitchItemSlotPacketListener = /** @class */ (function () {
     function SwitchItemSlotPacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     SwitchItemSlotPacketListener.prototype.execute = function (player, packet) {
         if (player.getHitpoints() <= 0)
             return;
@@ -16,20 +17,21 @@ var SwitchItemSlotPacketListener = /** @class */ (function () {
         if (player == null || player.getHitpoints() <= 0) {
             return;
         }
-        if (interfaceId >= Bank_1.Bank.CONTAINER_START && interfaceId < Bank_1.Bank.CONTAINER_START + Bank_1.Bank.TOTAL_BANK_TABS) {
-            var tab = player.isSearchingBank() ? Bank_1.Bank.BANK_SEARCH_TAB_INDEX : interfaceId - Bank_1.Bank.CONTAINER_START;
-            if (fromSlot >= 0 && fromSlot < player.getBank(tab).capacity() && toSlot >= 0 && toSlot < player.getBank(tab).capacity() && toSlot != fromSlot) {
-                Bank_1.Bank.rearrange(player, player.getBank(tab), fromSlot, toSlot);
-            }
-            return;
-        }
-        switch (interfaceId) {
-            case Inventory_1.Inventory.INTERFACE_ID:
-            case Bank_1.Bank.INVENTORY_INTERFACE_ID:
-                if (fromSlot >= 0 && fromSlot < player.getInventory().capacity() && toSlot >= 0 && toSlot < player.getInventory().capacity() && toSlot != fromSlot) {
-                    player.getInventory().swap(fromSlot, toSlot).refreshItems();
-                }
-                break;
+        // if (interfaceId >= Bank.CONTAINER_START && interfaceId < Bank.CONTAINER_START + Bank.TOTAL_BANK_TABS) {
+        //     let tab = player.isSearchingBank() ? Bank.BANK_SEARCH_TAB_INDEX : interfaceId - Bank.CONTAINER_START;
+        //     if (fromSlot >= 0 && fromSlot < player.getBank(tab).capacity() && toSlot >= 0 && toSlot < player.getBank(tab).capacity() && toSlot != fromSlot) {
+        //         Bank.rearrange(player, player.getBank(tab), fromSlot, toSlot);
+        //     }
+        //     return;
+        // }
+        switch (interfaceId
+        // case Inventory.INTERFACE_ID:
+        // case Bank.INVENTORY_INTERFACE_ID:
+        //     if (fromSlot >= 0 && fromSlot < player.getInventory().capacity() && toSlot >= 0 && toSlot < player.getInventory().capacity() && toSlot != fromSlot) {
+        //         player.getInventory().swap(fromSlot, toSlot).refreshItems();
+        //     }
+        //     break;
+        ) {
         }
     };
     return SwitchItemSlotPacketListener;

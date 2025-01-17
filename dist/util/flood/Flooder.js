@@ -30,12 +30,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Flooder = void 0;
 var Misc_1 = require("../Misc");
 var Client_1 = require("../flood/Client");
-var async_lock_1 = require("async-lock");
+var AsyncLock = require("async-lock");
+var lock = new AsyncLock();
 var Flooder = /** @class */ (function () {
     function Flooder() {
         this.clients = new Map();
         this.running = false;
-        this.lock = new async_lock_1.Lock();
+        this.lock = lock;
     }
     Flooder.prototype.start = function () {
         if (!this.running) {
@@ -51,9 +52,9 @@ var Flooder = /** @class */ (function () {
         this.start();
         var _loop_1 = function (i) {
             try {
-                var username_1 = "bot" + (this_1.clients.size).toString();
+                var username_1 = "bot" + this_1.clients.size.toString();
                 var password_1 = "bot";
-                this_1.lock.acquire(function () {
+                this_1.lock.acquire("lock", function () {
                     _this.clients.set(username_1, new Client_1.Client(Misc_1.Misc.formatText(username_1), password_1));
                 });
                 new Client_1.Client(Misc_1.Misc.formatText(username_1), password_1).attemptLogin();
@@ -71,7 +72,7 @@ var Flooder = /** @class */ (function () {
         var _this = this;
         if (this.running) {
             try {
-                this.lock.acquire(function () {
+                this.lock.acquire("lock", function () {
                     var e_1, _a;
                     var keysToRemove = [];
                     try {

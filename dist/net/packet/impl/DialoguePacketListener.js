@@ -4,6 +4,7 @@ exports.DialoguePacketListener = void 0;
 var DialoguePacketListener = /** @class */ (function () {
     function DialoguePacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     DialoguePacketListener.prototype.execute = function (player, packet) {
         player.getDialogueManager().advance();
     };

@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -37,49 +37,38 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PlayerSession = void 0;
-var Player_1 = require("../game/entity/impl/player/Player");
-var World_1 = require("../game/World");
+// import { Player } from '../game/entity/impl/player/Player';
+// import { World } from '../game/World';
 var PacketDecoder_1 = require("./codec/PacketDecoder");
-var LoginResponsePacket_1 = require("./login/LoginResponsePacket");
-var LoginResponses_1 = require("./login/LoginResponses");
 var PacketConstants_1 = require("./packet/PacketConstants");
-var Misc_1 = require("../util/Misc");
 var NetworkConstants_1 = require("./NetworkConstants");
 var PlayerSession = /** @class */ (function () {
+    // public player: Player;
     function PlayerSession(channel) {
         this.packetsQueue = [];
         this.lastPacketOpcodeQueue = [];
         this.channel = channel;
-        this.player = new Player_1.Player(this);
+        // this.player = new Player(this);
     }
     PlayerSession.prototype.finalizeLogin = function (msg) {
         return __awaiter(this, void 0, void 0, function () {
-            var response;
             var _this = this;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, LoginResponses_1.LoginResponses.evaluate(this.player, msg)];
-                    case 1:
-                        response = _a.sent();
-                        this.player.setLongUsername(Misc_1.Misc.stringToLong(this.player.getUsername()));
-                        this.channel.emit("login_response", new LoginResponsePacket_1.LoginResponsePacket(response, this.player.getRights()));
-                        if (response != LoginResponses_1.LoginResponses.LOGIN_SUCCESSFUL) {
-                            this.channel.disconnect();
-                            return [2 /*return*/];
-                        }
-                        // Replace decoder/encoder to packets
-                        this.channel.removeAllListeners("packet");
-                        this.channel.on("packet", function (data) {
-                            var packetDecoder = new PacketDecoder_1.PacketDecoder(msg.getDecryptor());
-                            var packet = packetDecoder.onConnection(data);
-                            _this.queuePacket(packet);
-                        });
-                        // Queue the login
-                        if (!World_1.World.getAddPlayerQueue().includes(this.player)) {
-                            World_1.World.getAddPlayerQueue().push(this.player);
-                        }
-                        return [2 /*return*/];
-                }
+                // let response = await LoginResponses.evaluate(this.player, msg);
+                // this.player.setLongUsername(Misc.stringToLong(this.player.getUsername()));
+                // this.channel.emit("login_response", new LoginResponsePacket(response, this.player.getRights()));
+                // if (response != LoginResponses.LOGIN_SUCCESSFUL) {
+                //     this.channel.disconnect();
+                //     return;
+                // }
+                // Replace decoder/encoder to packets
+                this.channel.removeAllListeners("packet");
+                this.channel.on("packet", function (data) {
+                    var packetDecoder = new PacketDecoder_1.PacketDecoder(msg.getDecryptor());
+                    var packet = packetDecoder.onConnection(data);
+                    _this.queuePacket(packet);
+                });
+                return [2 /*return*/];
             });
         });
     };
@@ -87,12 +76,12 @@ var PlayerSession = /** @class */ (function () {
         if (PacketConstants_1.PacketConstants.PACKETS[msg.getOpcode()] == null) {
             return;
         }
-        var total_size = (this.packetsQueue.length);
+        var total_size = this.packetsQueue.length;
         if (total_size >= NetworkConstants_1.NetworkConstants.PACKET_PROCESS_LIMIT) {
             return;
         }
-        if (msg.getOpcode() == PacketConstants_1.PacketConstants.EQUIP_ITEM_OPCODE
-            || msg.getOpcode() == PacketConstants_1.PacketConstants.SPECIAL_ATTACK_OPCODE) {
+        if (msg.getOpcode() == PacketConstants_1.PacketConstants.EQUIP_ITEM_OPCODE ||
+            msg.getOpcode() == PacketConstants_1.PacketConstants.SPECIAL_ATTACK_OPCODE) {
             this.packetsQueue.unshift(msg);
             return;
         }
@@ -109,7 +98,7 @@ var PlayerSession = /** @class */ (function () {
             }
             this.lastPacketOpcodeQueue.push(packet.getOpcode());
             try {
-                PacketConstants_1.PacketConstants.PACKETS[packet.getOpcode()].execute(this.player, packet);
+                // PacketConstants.PACKETS[packet.getOpcode()].execute(this.player, packet);
             }
             catch (e) {
                 console.log("processedPackets: " + this.lastPacketOpcodeQueue);
@@ -136,14 +125,14 @@ var PlayerSession = /** @class */ (function () {
         if (!this.channel.connected) {
             return;
         }
-        this.channel.flush();
+        this.channel.disconnect();
     };
-    PlayerSession.prototype.getPlayer = function () {
-        return this.player;
-    };
-    PlayerSession.prototype.setPlayer = function (player) {
-        this.player = player;
-    };
+    // public getPlayer(): Player {
+    //     return this.player;
+    // }
+    // public setPlayer(player: Player) {
+    //     this.player = player;
+    // }
     PlayerSession.prototype.getChannel = function () {
         return this.channel;
     };

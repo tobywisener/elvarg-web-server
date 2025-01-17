@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -74,6 +74,8 @@ var __values = (this && this.__values) || function(o) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Misc = void 0;
 var decimal_format_1 = require("decimal-format");
+// import { Location } from '../game/model/Location';
+// import { Player } from '../game/entity/impl/player/Player';
 var RandomGen_1 = require("../util/RandomGen");
 var js_joda_1 = require("js-joda");
 var fs_extra_1 = require("fs-extra");
@@ -81,14 +83,14 @@ var path = require("path");
 var path_1 = require("path");
 var zlib = require("zlib");
 var moment_1 = require("moment");
-var Misc = exports.Misc = /** @class */ (function () {
+var Misc = /** @class */ (function () {
     function Misc() {
     }
     Misc.getTicks = function (seconds) {
-        return (seconds / 0.6);
+        return seconds / 0.6;
     };
     Misc.getSeconds = function (ticks) {
-        return (ticks * 0.6);
+        return ticks * 0.6;
     };
     Misc.getRandom = function (length) {
         return Math.floor(Math.random() * (length + 1));
@@ -110,9 +112,13 @@ var Misc = exports.Misc = /** @class */ (function () {
     Misc.getTimePlayed = function (totalPlayTime) {
         var sec = Math.floor(totalPlayTime / 1000);
         var h = Math.floor(sec / 3600);
-        var m = Math.floor(sec / 60 % 60);
+        var m = Math.floor((sec / 60) % 60);
         var s = sec % 60;
-        return (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+        return ((h < 10 ? "0" + h : h) +
+            ":" +
+            (m < 10 ? "0" + m : m) +
+            ":" +
+            (s < 10 ? "0" + s : s));
     };
     Misc.getHoursPlayed = function (totalPlayTime) {
         var sec = Math.floor(totalPlayTime / 1000);
@@ -121,7 +127,7 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.getMinutesPassed = function (t) {
         var seconds = Math.floor((t / 1000) % 60);
-        var minutes = Math.floor(((t - seconds) / 1000) / 60);
+        var minutes = Math.floor((t - seconds) / 1000 / 60);
         return minutes;
     };
     Misc.concat = function (a, b) {
@@ -165,7 +171,9 @@ var Misc = exports.Misc = /** @class */ (function () {
             }
             if (!/[a-zA-Z0-9]/.test(s.charAt(i))) {
                 if (i + 1 < s.length) {
-                    s = "".concat(s.substring(0, i + 1)).concat(s.charAt(i + 1).toUpperCase()).concat(s.substring(i + 2));
+                    s = "".concat(s.substring(0, i + 1)).concat(s
+                        .charAt(i + 1)
+                        .toUpperCase()).concat(s.substring(i + 2));
                 }
             }
         }
@@ -173,10 +181,10 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.getTotalAmount = function (j) {
         if (j >= 10000 && j < 1000000) {
-            return (j / 1000) + "K";
+            return j / 1000 + "K";
         }
         else if (j >= 1000000 && j <= Number.MAX_SAFE_INTEGER) {
-            return (j / 1000000) + "M";
+            return j / 1000000 + "M";
         }
         else {
             return "" + j;
@@ -186,13 +194,17 @@ var Misc = exports.Misc = /** @class */ (function () {
         return this.formatText(str);
     };
     Misc.insertCommasToNumber = function (number) {
-        return number.length < 4 ? number : this.insertCommasToNumber(number.substring(0, number.length - 3)) + "," + number.substring(number.length - 3, number.length);
+        return number.length < 4
+            ? number
+            : this.insertCommasToNumber(number.substring(0, number.length - 3)) +
+                "," +
+                number.substring(number.length - 3, number.length);
     };
     Misc.textUnpack = function (packedData, size) {
         var decodeBuf = new Array(4096);
         var idx = 0, highNibble = -1;
         for (var i = 0; i < size * 2; i++) {
-            var val = packedData[i / 2] >> (4 - 4 * (i % 2)) & 0xf;
+            var val = (packedData[i / 2] >> (4 - 4 * (i % 2))) & 0xf;
             if (highNibble == -1) {
                 if (val < 13) {
                     decodeBuf[idx++] = parseInt(Misc.xlateTable[val]);
@@ -202,7 +214,7 @@ var Misc = exports.Misc = /** @class */ (function () {
                 }
             }
             else {
-                decodeBuf[idx++] = parseInt(Misc.xlateTable[((highNibble << 4) + val) - 195]);
+                decodeBuf[idx++] = parseInt(Misc.xlateTable[(highNibble << 4) + val - 195]);
                 highNibble = -1;
             }
         }
@@ -210,20 +222,42 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.anOrAr = function (s) {
         s = s.toLowerCase();
-        if (s === "anchovies" || s === "soft clay" || s === "cheese" || s === "ball of wool" || s === "spice" || s === "steel nails" || s === "snape grass" || s === "coal") {
+        if (s === "anchovies" ||
+            s === "soft clay" ||
+            s === "cheese" ||
+            s === "ball of wool" ||
+            s === "spice" ||
+            s === "steel nails" ||
+            s === "snape grass" ||
+            s === "coal") {
             return "some";
         }
-        if (s.startsWith("a") || s.startsWith("e") || s.startsWith("i") || s.startsWith("o") || s.startsWith("u")) {
+        if (s.startsWith("a") ||
+            s.startsWith("e") ||
+            s.startsWith("i") ||
+            s.startsWith("o") ||
+            s.startsWith("u")) {
             return "an";
         }
         return "a";
     };
     Misc.anOrAs = function (s) {
         s = s.toLowerCase();
-        if (s === "anchovies" || s === "soft clay" || s === "cheese" || s === "ball of wool" || s === "spice" || s === "steel nails" || s === "snape grass" || s === "coal") {
+        if (s === "anchovies" ||
+            s === "soft clay" ||
+            s === "cheese" ||
+            s === "ball of wool" ||
+            s === "spice" ||
+            s === "steel nails" ||
+            s === "snape grass" ||
+            s === "coal") {
             return "some";
         }
-        if (s.startsWith("a") || s.startsWith("e") || s.startsWith("i") || s.startsWith("o") || s.startsWith("u")) {
+        if (s.startsWith("a") ||
+            s.startsWith("e") ||
+            s.startsWith("i") ||
+            s.startsWith("o") ||
+            s.startsWith("u")) {
             return "an";
         }
         return "a";
@@ -272,9 +306,20 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.anOrA = function (s) {
         s = s.toLowerCase();
-        if (s.toLowerCase() === "anchovies" || s.toLowerCase() === "soft clay" || s.toLowerCase() === "cheese" || s.toLowerCase() === "ball of wool" || s.toLowerCase() === "spice" || s.toLowerCase() === "steel nails" || s.toLowerCase() === "snape grass" || s.toLowerCase() === "coal")
+        if (s.toLowerCase() === "anchovies" ||
+            s.toLowerCase() === "soft clay" ||
+            s.toLowerCase() === "cheese" ||
+            s.toLowerCase() === "ball of wool" ||
+            s.toLowerCase() === "spice" ||
+            s.toLowerCase() === "steel nails" ||
+            s.toLowerCase() === "snape grass" ||
+            s.toLowerCase() === "coal")
             return "some";
-        if (s.startsWith("a") || s.startsWith("e") || s.startsWith("i") || s.startsWith("o") || s.startsWith("u"))
+        if (s.startsWith("a") ||
+            s.startsWith("e") ||
+            s.startsWith("i") ||
+            s.startsWith("o") ||
+            s.startsWith("u"))
             return "an";
         return "a";
     };
@@ -293,10 +338,10 @@ var Misc = exports.Misc = /** @class */ (function () {
                 var filePath = path.join(directory, file);
                 var stat = fs_extra_1.fs.lstatSync(filePath);
                 if (stat.isDirectory()) {
-                    classes = classes.concat(Misc.findClasses(filePath, packageName + '.' + file));
+                    classes = classes.concat(Misc.findClasses(filePath, packageName + "." + file));
                 }
-                else if (file.endsWith('.class')) {
-                    classes.push(require(packageName + '.' + file.substring(0, file.length - 6)));
+                else if (file.endsWith(".class")) {
+                    classes.push(require(packageName + "." + file.substring(0, file.length - 6)));
                 }
             }
         }
@@ -355,13 +400,14 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.isWeekend = function () {
         var day = new Date().getDay();
-        return (day === 0) || (day === 6) || (day === 7);
+        return day === 0 || day === 6 || day === 7;
     };
     Misc.randomTypeOfList = function (list) {
         return list[Math.floor(Math.random() * list.length)];
     };
     Misc.randomInclusive = function (min, max) {
-        return Math.min(min, max) + Math.floor(Math.random() * (Math.max(min, max) - Math.min(min, max) + 1));
+        return (Math.min(min, max) +
+            Math.floor(Math.random() * (Math.max(min, max) - Math.min(min, max) + 1)));
     };
     Misc.getBuffers = function (filePath) {
         return __awaiter(this, void 0, void 0, function () {
@@ -398,6 +444,7 @@ var Misc = exports.Misc = /** @class */ (function () {
             });
         });
     };
+    // public static getFormattedPlayTime(player: Player): string {
     Misc.getFormattedPlayTime = function (player) {
         var now = new Date().getTime();
         var creationDate = player.getCreationDate().getTime();
@@ -416,7 +463,7 @@ var Misc = exports.Misc = /** @class */ (function () {
         var value = 0;
         var n = 1000;
         for (var i = 0; i < data.length; i++) {
-            var num = (data[i] & 0xFF) * n;
+            var num = (data[i] & 0xff) * n;
             value += num;
             if (n > 1) {
                 n = n / 1000;
@@ -424,9 +471,9 @@ var Misc = exports.Misc = /** @class */ (function () {
         }
         return value;
     };
-    Misc.delta = function (a, b) {
-        return { x: b.x - a.x, y: b.y - a.y };
-    };
+    // public static delta(a: Location, b: Location) {
+    //     return { x: b.x - a.x, y: b.y - a.y };
+    // }
     // Picks a random element out of any array type
     Misc.randomElements = function (array) {
         return array[Math.floor(Math.random() * array.length)];
@@ -477,7 +524,11 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.getVowelFormat = function (name) {
         var letter = name.charAt(0);
-        var vowel = letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u';
+        var vowel = letter == "a" ||
+            letter == "e" ||
+            letter == "i" ||
+            letter == "o" ||
+            letter == "u";
         var other = vowel ? "an" : "a";
         return other + " " + name;
     };
@@ -489,14 +540,14 @@ var Misc = exports.Misc = /** @class */ (function () {
         for (var i = 0; i < string.length && i < 12; i++) {
             var c = string.charAt(i);
             l *= 37;
-            if (c >= 'A' && c <= 'Z') {
-                l += (1 + c.charCodeAt(0)) - 65;
+            if (c >= "A" && c <= "Z") {
+                l += 1 + c.charCodeAt(0) - 65;
             }
-            else if (c >= 'a' && c <= 'z') {
-                l += (1 + c.charCodeAt(0)) - 97;
+            else if (c >= "a" && c <= "z") {
+                l += 1 + c.charCodeAt(0) - 97;
             }
-            else if (c >= '0' && c <= '9') {
-                l += (27 + c.charCodeAt(0)) - 48;
+            else if (c >= "0" && c <= "9") {
+                l += 27 + c.charCodeAt(0) - 48;
             }
         }
         while (l % 37 === 0 && l !== 0) {
@@ -529,25 +580,25 @@ var Misc = exports.Misc = /** @class */ (function () {
         while (l != 0) {
             var l1 = l;
             l /= 37;
-            ac[11 - i++] = Misc.VALID_CHARACTERS[(l1 - l * 37)];
+            ac[11 - i++] = Misc.VALID_CHARACTERS[l1 - l * 37];
         }
         return ac.slice(12 - i, i).join("");
     };
     Misc.fixName = function (name) {
         if (name.length > 0) {
-            var ac = name.split('');
+            var ac = name.split("");
             for (var j = 0; j < ac.length; j++) {
-                if (ac[j] === '_') {
-                    ac[j] = ' ';
-                    if ((j + 1 < ac.length) && (ac[j + 1] >= 'a') && (ac[j + 1] <= 'z')) {
-                        ac[j + 1] = String.fromCharCode((ac[j + 1].charCodeAt(0) + 65) - 97);
+                if (ac[j] === "_") {
+                    ac[j] = " ";
+                    if (j + 1 < ac.length && ac[j + 1] >= "a" && ac[j + 1] <= "z") {
+                        ac[j + 1] = String.fromCharCode(ac[j + 1].charCodeAt(0) + 65 - 97);
                     }
                 }
             }
-            if ((ac[0] >= 'a') && (ac[0] <= 'z')) {
-                ac[0] = String.fromCharCode((ac[0].charCodeAt(0) + 65) - 97);
+            if (ac[0] >= "a" && ac[0] <= "z") {
+                ac[0] = String.fromCharCode(ac[0].charCodeAt(0) + 65 - 97);
             }
-            return ac.join('');
+            return ac.join("");
         }
         else {
             return name;
@@ -555,7 +606,42 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.wrapText = function (text, len) {
         var e_5, _a;
-        var EFFECTS = ["@gre@", "@cya@", "@red@", "chalreq", "tradereq", "@bro@", "@yel@", "@blu@", "@gr1@", "@gr2@", "@gr3@", "@str@", "@mag@", "@dre@", "@dbl@", "@or1@", "@or2@", "@or3@", "@whi@", "@bla@", "@cr", "<col", "<shad", "<str", "<u", "<br", "<trans", "duelreq", "<img", "@lre@", ":clan:", "]cr", "::summ", "<str"];
+        var EFFECTS = [
+            "@gre@",
+            "@cya@",
+            "@red@",
+            "chalreq",
+            "tradereq",
+            "@bro@",
+            "@yel@",
+            "@blu@",
+            "@gr1@",
+            "@gr2@",
+            "@gr3@",
+            "@str@",
+            "@mag@",
+            "@dre@",
+            "@dbl@",
+            "@or1@",
+            "@or2@",
+            "@or3@",
+            "@whi@",
+            "@bla@",
+            "@cr",
+            "<col",
+            "<shad",
+            "<str",
+            "<u",
+            "<br",
+            "<trans",
+            "duelreq",
+            "<img",
+            "@lre@",
+            ":clan:",
+            "]cr",
+            "::summ",
+            "<str",
+        ];
         // Retorna um array vazio para o texto nulo
         if (text == null) {
             return [];
@@ -568,10 +654,10 @@ var Misc = exports.Misc = /** @class */ (function () {
         if (text.length <= len) {
             return [text];
         }
-        var chars = text.split('');
+        var chars = text.split("");
         var lines = [];
-        var line = '';
-        var word = '';
+        var line = "";
+        var word = "";
         // Efeitos de texto
         var effects = null;
         try {
@@ -579,7 +665,7 @@ var Misc = exports.Misc = /** @class */ (function () {
                 var effectCode = EFFECTS_1_1.value;
                 if (text.includes(effectCode)) {
                     if (effects == null) {
-                        effects = '';
+                        effects = "";
                     }
                     effects += effectCode;
                 }
@@ -594,30 +680,30 @@ var Misc = exports.Misc = /** @class */ (function () {
         }
         for (var i = 0; i < chars.length; i++) {
             word += chars[i];
-            if (chars[i] == ' ') {
-                if ((line.length + word.length) > len) {
+            if (chars[i] == " ") {
+                if (line.length + word.length > len) {
                     var line_ = line;
                     // Aplica os efeitos
                     if (effects != null && !line_.startsWith(effects)) {
                         line_ = effects + line_;
                     }
                     lines.push(line_);
-                    line = '';
+                    line = "";
                 }
                 line += word;
-                word = '';
+                word = "";
             }
         }
         // Lidar com quaisquer caracteres extras na palavra atual
         if (word.length > 0) {
-            if ((line.length + word.length) > len) {
+            if (line.length + word.length > len) {
                 var line_ = line;
                 // Aplica os efeitos
                 if (effects != null && !line_.startsWith(effects)) {
                     line_ = effects + line_;
                 }
                 lines.push(line_);
-                line = '';
+                line = "";
             }
             line += word;
         }
@@ -637,12 +723,12 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.getUsersProjectRootDirectory = function () {
         var envRootDir = process.cwd();
-        var rootDir = (0, path_1.resolve)('.');
+        var rootDir = (0, path_1.resolve)(".");
         if (rootDir.startsWith(envRootDir)) {
             return rootDir;
         }
         else {
-            throw new Error('Root dir not found in user directory.');
+            throw new Error("Root dir not found in user directory.");
         }
     };
     Misc.randoms = function (range) {
@@ -678,36 +764,209 @@ var Misc = exports.Misc = /** @class */ (function () {
     };
     Misc.FORMATTER = new decimal_format_1.default("0.#");
     Misc.HALF_A_DAY_IN_MILLIS = 43200000;
-    Misc.VALID_PLAYER_CHARACTERS = ['_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-        'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '[', ']', '/', '-', ' '];
-    Misc.VALID_CHARACTERS = ['_', 'a', 'b', 'c', 'd',
-        'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-        'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3',
-        '4', '5', '6', '7', '8', '9', '!', '@', '#', '$', '%', '^', '&',
-        '', '(', ')', '-', '+', '=', ':', ';', '.', '>', '<', ',', '"',
-        '[', ']', '|', '?', '/', '`'
+    Misc.VALID_PLAYER_CHARACTERS = [
+        "_",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "[",
+        "]",
+        "/",
+        "-",
+        " ",
+    ];
+    Misc.VALID_CHARACTERS = [
+        "_",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "!",
+        "@",
+        "#",
+        "$",
+        "%",
+        "^",
+        "&",
+        "",
+        "(",
+        ")",
+        "-",
+        "+",
+        "=",
+        ":",
+        ";",
+        ".",
+        ">",
+        "<",
+        ",",
+        '"',
+        "[",
+        "]",
+        "|",
+        "?",
+        "/",
+        "`",
     ];
     Misc.RANDOM = new RandomGen_1.RandomGen();
     Misc.BLOCKED_WORDS = [
-        ".com", ".net", ".org", "<img", "@cr", "<img=", ":tradereq:", ":duelreq:",
-        "<col=", "<shad="
+        ".com",
+        ".net",
+        ".org",
+        "<img",
+        "@cr",
+        "<img=",
+        ":tradereq:",
+        ":duelreq:",
+        "<col=",
+        "<shad=",
     ];
-    Misc.DIRECTIONS = [[-1, 1], [0, 1], [1, 1],
-        [-1, 0], [1, 0], [-1, -1], [0, -1], [1, -1]];
+    Misc.DIRECTIONS = [
+        [-1, 1],
+        [0, 1],
+        [1, 1],
+        [-1, 0],
+        [1, 0],
+        [-1, -1],
+        [0, -1],
+        [1, -1],
+    ];
     Misc.xlateDirectionToClient = { 1: 2, 4: 7, 6: 5, 3: 0 };
-    Misc.xlateTable = [' ', 'e', 't', 'a', 'o', 'i', 'h', 'n',
-        's', 'r', 'd', 'l', 'u', 'm', 'w', 'c', 'y', 'f', 'g', 'p', 'b',
-        'v', 'k', 'x', 'j', 'q', 'z', '0', '1', '2', '3', '4', '5', '6',
-        '7', '8', '9', ' ', '!', '?', '.', ',', ':', ';', '(', ')', '-',
-        '&', '*', '\\', '\'', '@', '#', '+', '=', '£', '$', '%', '"',
-        '[', ']'];
+    Misc.xlateTable = [
+        " ",
+        "e",
+        "t",
+        "a",
+        "o",
+        "i",
+        "h",
+        "n",
+        "s",
+        "r",
+        "d",
+        "l",
+        "u",
+        "m",
+        "w",
+        "c",
+        "y",
+        "f",
+        "g",
+        "p",
+        "b",
+        "v",
+        "k",
+        "x",
+        "j",
+        "q",
+        "z",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        " ",
+        "!",
+        "?",
+        ".",
+        ",",
+        ":",
+        ";",
+        "(",
+        ")",
+        "-",
+        "&",
+        "*",
+        "\\",
+        "'",
+        "@",
+        "#",
+        "+",
+        "=",
+        "£",
+        "$",
+        "%",
+        '"',
+        "[",
+        "]",
+    ];
     Misc.getDayOfYear = function () {
         var c = new Date();
         var year = c.getFullYear();
         var month = c.getMonth();
         var days = 0;
         var daysOfTheMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0)) {
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
             daysOfTheMonth[1] = 29;
         }
         days += c.getDate();
@@ -747,11 +1006,12 @@ var Misc = exports.Misc = /** @class */ (function () {
         return elapsed;
     };
     Misc.getTimeLeft = function (start, timeAmount, timeUnit) {
-        var duration = moment_1.default.duration(Date.now() - start, 'milliseconds');
+        var duration = moment_1.default.duration(Date.now() - start, "milliseconds");
         var timeUnitDuration = moment_1.default.duration(timeAmount, timeUnit);
         var remaining = timeUnitDuration.subtract(duration).as(timeUnit);
         return Math.max(remaining, 1);
     };
     return Misc;
 }());
+exports.Misc = Misc;
 //# sourceMappingURL=Misc.js.map

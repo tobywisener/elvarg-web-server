@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ShopIdentifiers = void 0;
-var ShopIdentifiers = exports.ShopIdentifiers = /** @class */ (function () {
+var ShopIdentifiers = /** @class */ (function () {
     function ShopIdentifiers(n1) {
         this.value = n1;
     }
@@ -18,4 +18,5 @@ var ShopIdentifiers = exports.ShopIdentifiers = /** @class */ (function () {
     ShopIdentifiers.POINTS_SHOP = 10;
     return ShopIdentifiers;
 }());
+exports.ShopIdentifiers = ShopIdentifiers;
 //# sourceMappingURL=ShopIdentifiers.js.map

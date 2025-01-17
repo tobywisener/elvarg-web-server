@@ -4,8 +4,7 @@ exports.FinalizedMapRegionChangePacketListener = void 0;
 var FinalizedMapRegionChangePacketListener = /** @class */ (function () {
     function FinalizedMapRegionChangePacketListener() {
     }
-    FinalizedMapRegionChangePacketListener.prototype.execute = function (player, packet) {
-    };
+    FinalizedMapRegionChangePacketListener.prototype.execute = function (player, packet) { };
     return FinalizedMapRegionChangePacketListener;
 }());
 exports.FinalizedMapRegionChangePacketListener = FinalizedMapRegionChangePacketListener;

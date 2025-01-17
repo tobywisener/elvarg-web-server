@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
-var GameBuilder_1 = require("./game/GameBuilder");
-var GameConstants_1 = require("./game/GameConstants");
+// import { GameBuilder } from "./game/GameBuilder";
+// import { GameConstants } from "./game/GameConstants";
 var NetworkBuilder_1 = require("./net/NetworkBuilder");
 var NetworkConstants_1 = require("./net/NetworkConstants");
 var Flooder_1 = require("./util/flood/Flooder");
-var logger_1 = require("logger");
-var Server = exports.Server = /** @class */ (function () {
+// import Logger from "logger";
+var logger = require("logger");
+var Server = /** @class */ (function () {
     function Server() {
     }
     Server.main = function (args) {
@@ -15,12 +16,14 @@ var Server = exports.Server = /** @class */ (function () {
             if (args.length === 1) {
                 Server.PRODUCTION = parseInt(args[0], 10) === 1;
             }
-            console.info("Initializing ".concat(GameConstants_1.GameConstants.NAME, " in ").concat(Server.PRODUCTION ? 'production' : 'non-production', " mode.."));
-            new GameBuilder_1.GameBuilder().initialize();
+            console.info("Initializing Name in ".concat(Server.PRODUCTION ? "production" : "non-production", " mode.."));
+            // new GameBuilder().initialize();
             new NetworkBuilder_1.NetworkBuilder().initialize(NetworkConstants_1.NetworkConstants.GAME_PORT);
-            console.info("".concat(GameConstants_1.GameConstants.NAME, " is now online!"));
+            console.log("Start");
+            // console.info(`${GameConstants.NAME} is now online!`);
         }
         catch (e) {
+            console.log(e, "error");
             console.error("An error occurred while binding the Bootstrap: ".concat(e));
             process.exit(1);
         }
@@ -29,7 +32,7 @@ var Server = exports.Server = /** @class */ (function () {
         if (!Server.DEBUG_LOGGING) {
             return;
         }
-        Server.getLogger().info(logMessage);
+        logger.info(logMessage);
     };
     Server.getLogger = function () {
         return Server.logger;
@@ -46,8 +49,10 @@ var Server = exports.Server = /** @class */ (function () {
     Server.flooder = new Flooder_1.Flooder();
     Server.PRODUCTION = false;
     Server.DEBUG_LOGGING = false;
-    Server.logger = logger_1.Logger.getLogger(Server.constructor.name);
+    Server.logger = logger.createLogger(Server.constructor.name);
     Server.updating = false;
     return Server;
 }());
+exports.Server = Server;
+Server.main(["1"]);
 //# sourceMappingURL=Server.js.map

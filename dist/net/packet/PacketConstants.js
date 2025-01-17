@@ -1,49 +1,9 @@
 "use strict";
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PacketConstants = void 0;
-var SpecialAttackPacketListener_1 = require("../packet/impl/SpecialAttackPacketListener");
-var ButtonClickPacketListener_1 = require("../packet/impl/ButtonClickPacketListener");
-var InterfaceActionClickOpcode_1 = require("../packet/impl/InterfaceActionClickOpcode");
-var ChatPacketListener_1 = require("../packet/impl/ChatPacketListener");
-var DropItemPacketListener_1 = require("../packet/impl/DropItemPacketListener");
-var FinalizedMapRegionChangePacketListener_1 = require("../packet/impl/FinalizedMapRegionChangePacketListener");
-var RegionChangePacketListener_1 = require("../packet/impl/RegionChangePacketListener");
-var CloseInterfacePacketListener_1 = require("../packet/impl/CloseInterfacePacketListener");
-var ExamineItemPacketListener_1 = require("../packet/impl/ExamineItemPacketListener");
-var ExamineNpcPacketListener_1 = require("../packet/impl/ExamineNpcPacketListener");
-var ChangeAppearancePacketListener_1 = require("../packet/impl/ChangeAppearancePacketListener");
-var EnterInputPacketListener_1 = require("../packet/impl/EnterInputPacketListener");
-var EquipPacketListener_1 = require("../packet/impl/EquipPacketListener");
-var DialoguePacketListener_1 = require("../packet/impl/DialoguePacketListener");
-var PlayerInactivePacketListener_1 = require("../packet/impl/PlayerInactivePacketListener");
-var ChatSettingsPacketListener_1 = require("../packet/impl/ChatSettingsPacketListener");
-var CommandPacketListener_1 = require("../packet/impl/CommandPacketListener");
-var MovementPacketListener_1 = require("../packet/impl/MovementPacketListener");
-var PickupItemPacketListener_1 = require("../packet/impl/PickupItemPacketListener");
-var SecondGroundItemOptionPacketListener_1 = require("../packet/impl/SecondGroundItemOptionPacketListener");
-var SwitchItemSlotPacketListener_1 = require("../packet/impl/SwitchItemSlotPacketListener");
-var FollowPlayerPacketListener_1 = require("../packet/impl/FollowPlayerPacketListener");
-var MagicOnPlayerPacketListener_1 = require("../packet/impl/MagicOnPlayerPacketListener");
-var MagicOnItemPacketListener_1 = require("../packet/impl/MagicOnItemPacketListener");
-var BankTabCreationPacketListener_1 = require("../packet/impl/BankTabCreationPacketListener");
-var SpawnItemPacketListener_1 = require("../packet/impl/SpawnItemPacketListener");
-var PlayerOptionPacketListener_1 = require("../packet/impl/PlayerOptionPacketListener");
-var ObjectActionPacketListener_1 = require("../../net/packet/impl/ObjectActionPacketListener");
-var NPCOptionPacketListener_1 = require("../../net/packet/impl/NPCOptionPacketListener");
-var ItemActionPacketListener_1 = require("../../net/packet/impl/ItemActionPacketListener");
-var UseItemPacketListener_1 = require("../../net/packet/impl/UseItemPacketListener");
-var PlayerRelationPacketListener_1 = require("../../net/packet/impl/PlayerRelationPacketListener");
-var TradeRequestPacketListener_1 = require("../../net/packet/impl/TradeRequestPacketListener");
-var CreationMenuPacketListener_1 = require("../../net/packet/impl/CreationMenuPacketListener");
-var TeleportPacketListener_1 = require("../../net/packet/impl/TeleportPacketListener");
-var ItemContainerActionPacketListener_1 = require("../../net/packet/impl/ItemContainerActionPacketListener");
-var PacketConstants = exports.PacketConstants = /** @class */ (function () {
+var PacketConstants = /** @class */ (function () {
     function PacketConstants() {
     }
-    var _a;
-    _a = PacketConstants;
-    PacketConstants.PACKETS = new Array(257);
     PacketConstants.TELEPORT_OPCODE = 183;
     PacketConstants.SPECIAL_ATTACK_OPCODE = 184;
     PacketConstants.BUTTON_CLICK_OPCODE = 185;
@@ -114,77 +74,78 @@ var PacketConstants = exports.PacketConstants = /** @class */ (function () {
     PacketConstants.ITEM_ON_OBJECT = 192;
     PacketConstants.ITEM_ON_GROUND_ITEM = 25;
     PacketConstants.ITEM_ON_PLAYER = 14;
-    (function () {
-        _a.PACKETS[_a.TELEPORT_OPCODE] = new TeleportPacketListener_1.TeleportPacketListener();
-        _a.PACKETS[_a.SPECIAL_ATTACK_OPCODE] = new SpecialAttackPacketListener_1.SpecialAttackPacketListener();
-        _a.PACKETS[_a.BUTTON_CLICK_OPCODE] = new ButtonClickPacketListener_1.ButtonClickPacketListener();
-        _a.PACKETS[_a.INTERFACE_ACTION_CLICK_OPCODE] = new InterfaceActionClickOpcode_1.InterfaceActionClickOpcode();
-        _a.PACKETS[_a.REGULAR_CHAT_OPCODE] = new ChatPacketListener_1.ChatPacketListener();
-        _a.PACKETS[_a.CLAN_CHAT_OPCODE] = new ChatPacketListener_1.ChatPacketListener();
-        _a.PACKETS[_a.DROP_ITEM_OPCODE] = new DropItemPacketListener_1.DropItemPacketListener();
-        _a.PACKETS[_a.FINALIZED_MAP_REGION_OPCODE] = new FinalizedMapRegionChangePacketListener_1.FinalizedMapRegionChangePacketListener();
-        _a.PACKETS[_a.CHANGE_MAP_REGION_OPCODE] = new RegionChangePacketListener_1.RegionChangePacketListener();
-        _a.PACKETS[_a.CLOSE_INTERFACE_OPCODE] = new CloseInterfacePacketListener_1.CloseInterfacePacketListener();
-        _a.PACKETS[_a.EXAMINE_ITEM_OPCODE] = new ExamineItemPacketListener_1.ExamineItemPacketListener();
-        _a.PACKETS[_a.EXAMINE_NPC_OPCODE] = new ExamineNpcPacketListener_1.ExamineNpcPacketListener();
-        _a.PACKETS[_a.CHANGE_APPEARANCE] = new ChangeAppearancePacketListener_1.ChangeAppearancePacketListener();
-        _a.PACKETS[_a.DIALOGUE_OPCODE] = new DialoguePacketListener_1.DialoguePacketListener();
-        _a.PACKETS[_a.ENTER_AMOUNT_OPCODE] = new EnterInputPacketListener_1.EnterInputPacketListener();
-        _a.PACKETS[_a.EQUIP_ITEM_OPCODE] = new EquipPacketListener_1.EquipPacketListener();
-        _a.PACKETS[_a.PLAYER_INACTIVE_OPCODE] = new PlayerInactivePacketListener_1.PlayerInactivePacketListener();
-        _a.PACKETS[_a.CHAT_SETTINGS_OPCODE] = new ChatSettingsPacketListener_1.ChatSettingsPacketListener();
-        _a.PACKETS[_a.COMMAND_OPCODE] = new CommandPacketListener_1.CommandPacketListener();
-        _a.PACKETS[_a.COMMAND_MOVEMENT_OPCODE] = new MovementPacketListener_1.MovementPacketListener();
-        _a.PACKETS[_a.GAME_MOVEMENT_OPCODE] = new MovementPacketListener_1.MovementPacketListener();
-        _a.PACKETS[_a.MINIMAP_MOVEMENT_OPCODE] = new MovementPacketListener_1.MovementPacketListener();
-        _a.PACKETS[_a.PICKUP_ITEM_OPCODE] = new PickupItemPacketListener_1.PickupItemPacketListener();
-        _a.PACKETS[_a.SECOND_GROUNDITEM_OPTION_OPCODE] = new SecondGroundItemOptionPacketListener_1.SecondGroundItemOptionPacketListener();
-        _a.PACKETS[_a.SWITCH_ITEM_SLOT_OPCODE] = new SwitchItemSlotPacketListener_1.SwitchItemSlotPacketListener();
-        _a.PACKETS[_a.FOLLOW_PLAYER_OPCODE] = new FollowPlayerPacketListener_1.FollowPlayerPacketListener();
-        _a.PACKETS[_a.MAGIC_ON_PLAYER_OPCODE] = new MagicOnPlayerPacketListener_1.MagicOnPlayerPacketListener();
-        _a.PACKETS[_a.MAGIC_ON_ITEM_OPCODE] = new MagicOnItemPacketListener_1.MagicOnItemPacketListener();
-        _a.PACKETS[_a.MAGIC_ON_GROUND_ITEM_OPCODE] = new MagicOnItemPacketListener_1.MagicOnItemPacketListener();
-        _a.PACKETS[_a.BANK_TAB_CREATION_OPCODE] = new BankTabCreationPacketListener_1.BankTabCreationPacketListener();
-        _a.PACKETS[_a.SPAWN_TAB_ACTION_OPCODE] = new SpawnItemPacketListener_1.SpawnItemPacketListener();
-        _a.PACKETS[_a.FIRST_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.SECOND_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.THIRD_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.FOURTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.FIFTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.SIXTH_ITEM_CONTAINER_ACTION_OPCODE] = new ItemContainerActionPacketListener_1.ItemContainerActionPacketListener();
-        _a.PACKETS[_a.ATTACK_PLAYER_OPCODE] = new PlayerOptionPacketListener_1.PlayerOptionPacketListener();
-        _a.PACKETS[_a.PLAYER_OPTION_1_OPCODE] = new PlayerOptionPacketListener_1.PlayerOptionPacketListener();
-        _a.PACKETS[_a.PLAYER_OPTION_2_OPCODE] = new PlayerOptionPacketListener_1.PlayerOptionPacketListener();
-        _a.PACKETS[_a.PLAYER_OPTION_3_OPCODE] = new PlayerOptionPacketListener_1.PlayerOptionPacketListener();
-        _a.PACKETS[_a.OBJECT_FIRST_CLICK_OPCODE] = new ObjectActionPacketListener_1.ObjectActionPacketListener();
-        _a.PACKETS[_a.OBJECT_SECOND_CLICK_OPCODE] = new ObjectActionPacketListener_1.ObjectActionPacketListener();
-        _a.PACKETS[_a.OBJECT_THIRD_CLICK_OPCODE] = new ObjectActionPacketListener_1.ObjectActionPacketListener();
-        _a.PACKETS[_a.OBJECT_FOURTH_CLICK_OPCODE] = new ObjectActionPacketListener_1.ObjectActionPacketListener();
-        _a.PACKETS[_a.OBJECT_FIFTH_CLICK_OPCODE] = new ObjectActionPacketListener_1.ObjectActionPacketListener();
-        _a.PACKETS[_a.ATTACK_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.FIRST_CLICK_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.MAGE_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.SECOND_CLICK_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.THIRD_CLICK_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.FOURTH_CLICK_NPC_OPCODE] = new NPCOptionPacketListener_1.NPCOptionPacketListener();
-        _a.PACKETS[_a.FIRST_ITEM_ACTION_OPCODE] = new ItemActionPacketListener_1.ItemActionPacketListener();
-        _a.PACKETS[_a.SECOND_ITEM_ACTION_OPCODE] = new ItemActionPacketListener_1.ItemActionPacketListener();
-        _a.PACKETS[_a.THIRD_ITEM_ACTION_OPCODE] = new ItemActionPacketListener_1.ItemActionPacketListener();
-        _a.PACKETS[_a.ITEM_ON_NPC] = new UseItemPacketListener_1.UseItemPacketListener();
-        _a.PACKETS[_a.ITEM_ON_ITEM] = new UseItemPacketListener_1.UseItemPacketListener();
-        _a.PACKETS[_a.ITEM_ON_OBJECT] = new UseItemPacketListener_1.UseItemPacketListener();
-        _a.PACKETS[_a.ITEM_ON_GROUND_ITEM] = new UseItemPacketListener_1.UseItemPacketListener();
-        _a.PACKETS[_a.ITEM_ON_PLAYER] = new UseItemPacketListener_1.UseItemPacketListener();
-        _a.PACKETS[_a.ADD_FRIEND_OPCODE] = new PlayerRelationPacketListener_1.PlayerRelationPacketListener();
-        _a.PACKETS[_a.REMOVE_FRIEND_OPCODE] = new PlayerRelationPacketListener_1.PlayerRelationPacketListener();
-        _a.PACKETS[_a.ADD_IGNORE_OPCODE] = new PlayerRelationPacketListener_1.PlayerRelationPacketListener();
-        _a.PACKETS[_a.REMOVE_IGNORE_OPCODE] = new PlayerRelationPacketListener_1.PlayerRelationPacketListener();
-        _a.PACKETS[_a.SEND_PM_OPCODE] = new PlayerRelationPacketListener_1.PlayerRelationPacketListener();
-        _a.PACKETS[_a.ENTER_AMOUNT_OPCODE] = new EnterInputPacketListener_1.EnterInputPacketListener();
-        _a.PACKETS[_a.ENTER_SYNTAX_OPCODE] = new EnterInputPacketListener_1.EnterInputPacketListener();
-        _a.PACKETS[_a.TRADE_REQUEST_OPCODE] = new TradeRequestPacketListener_1.TradeRequestPacketListener();
-        _a.PACKETS[_a.CREATION_MENU_OPCODE] = new CreationMenuPacketListener_1.CreationMenuPacketListener();
-    })();
+    PacketConstants.PACKETS = new Map([
+    // [PacketConstants.TELEPORT_OPCODE, new TeleportPacketListener()],
+    // [PacketConstants.SPECIAL_ATTACK_OPCODE, new SpecialAttackPacketListener()],
+    // [PacketConstants.BUTTON_CLICK_OPCODE, new ButtonClickPacketListener()],
+    // [PacketConstants.INTERFACE_ACTION_CLICK_OPCODE, new InterfaceActionClickOpcode()],
+    // [PacketConstants.REGULAR_CHAT_OPCODE, new ChatPacketListener()],
+    // [PacketConstants.CLAN_CHAT_OPCODE, new ChatPacketListener()],
+    // [PacketConstants.DROP_ITEM_OPCODE, new DropItemPacketListener()],
+    // [PacketConstants.FINALIZED_MAP_REGION_OPCODE, new FinalizedMapRegionChangePacketListener()],
+    // [PacketConstants.CHANGE_MAP_REGION_OPCODE, new RegionChangePacketListener()],
+    // [PacketConstants.CLOSE_INTERFACE_OPCODE, new CloseInterfacePacketListener()],
+    // [PacketConstants.EXAMINE_ITEM_OPCODE, new ExamineItemPacketListener()],
+    // [PacketConstants.EXAMINE_NPC_OPCODE, new ExamineNpcPacketListener()],
+    // [PacketConstants.CHANGE_APPEARANCE, new ChangeAppearancePacketListener()],
+    // [PacketConstants.DIALOGUE_OPCODE, new DialoguePacketListener()],
+    // [PacketConstants.ENTER_AMOUNT_OPCODE, new EnterInputPacketListener()],
+    // [PacketConstants.EQUIP_ITEM_OPCODE, new EquipPacketListener()],
+    // [PacketConstants.PLAYER_INACTIVE_OPCODE, new PlayerInactivePacketListener()],
+    // [PacketConstants.CHAT_SETTINGS_OPCODE, new ChatSettingsPacketListener()],
+    // [PacketConstants.COMMAND_OPCODE, new CommandPacketListener()],
+    // [PacketConstants.COMMAND_MOVEMENT_OPCODE, new MovementPacketListener()],
+    // [PacketConstants.GAME_MOVEMENT_OPCODE, new MovementPacketListener()],
+    // [PacketConstants.MINIMAP_MOVEMENT_OPCODE, new MovementPacketListener()],
+    // [PacketConstants.PICKUP_ITEM_OPCODE, new PickupItemPacketListener()],
+    // [PacketConstants.SECOND_GROUNDITEM_OPTION_OPCODE, new SecondGroundItemOptionPacketListener()],
+    // [PacketConstants.SWITCH_ITEM_SLOT_OPCODE, new SwitchItemSlotPacketListener()],
+    // [PacketConstants.FOLLOW_PLAYER_OPCODE, new FollowPlayerPacketListener()],
+    // [PacketConstants.MAGIC_ON_PLAYER_OPCODE, new MagicOnPlayerPacketListener()],
+    // [PacketConstants.MAGIC_ON_ITEM_OPCODE, new MagicOnItemPacketListener()],
+    // [PacketConstants.MAGIC_ON_GROUND_ITEM_OPCODE, new MagicOnItemPacketListener()],
+    // [PacketConstants.BANK_TAB_CREATION_OPCODE, new BankTabCreationPacketListener()],
+    // [PacketConstants.SPAWN_TAB_ACTION_OPCODE, new SpawnItemPacketListener()],
+    // [PacketConstants.FIRST_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.SECOND_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.THIRD_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.FOURTH_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.FIFTH_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.SIXTH_ITEM_CONTAINER_ACTION_OPCODE, new ItemContainerActionPacketListener()],
+    // [PacketConstants.ATTACK_PLAYER_OPCODE, new PlayerOptionPacketListener()],
+    // [PacketConstants.PLAYER_OPTION_1_OPCODE, new PlayerOptionPacketListener()],
+    // [PacketConstants.PLAYER_OPTION_2_OPCODE, new PlayerOptionPacketListener()],
+    // [PacketConstants.PLAYER_OPTION_3_OPCODE, new PlayerOptionPacketListener()],
+    // [PacketConstants.OBJECT_FIRST_CLICK_OPCODE, new ObjectActionPacketListener()],
+    // [PacketConstants.OBJECT_SECOND_CLICK_OPCODE, new ObjectActionPacketListener()],
+    // [PacketConstants.OBJECT_THIRD_CLICK_OPCODE, new ObjectActionPacketListener()],
+    // [PacketConstants.OBJECT_FOURTH_CLICK_OPCODE, new ObjectActionPacketListener()],
+    // [PacketConstants.OBJECT_FIFTH_CLICK_OPCODE, new ObjectActionPacketListener()],
+    // [PacketConstants.ATTACK_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.FIRST_CLICK_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.MAGE_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.SECOND_CLICK_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.THIRD_CLICK_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.FOURTH_CLICK_NPC_OPCODE, new NPCOptionPacketListener()],
+    // [PacketConstants.FIRST_ITEM_ACTION_OPCODE, new ItemActionPacketListener()],
+    // [PacketConstants.SECOND_ITEM_ACTION_OPCODE, new ItemActionPacketListener()],
+    // [PacketConstants.THIRD_ITEM_ACTION_OPCODE, new ItemActionPacketListener()],
+    // [PacketConstants.ITEM_ON_NPC, new UseItemPacketListener()],
+    // [PacketConstants.ITEM_ON_ITEM, new UseItemPacketListener()],
+    // [PacketConstants.ITEM_ON_OBJECT, new UseItemPacketListener()],
+    // [PacketConstants.ITEM_ON_GROUND_ITEM, new UseItemPacketListener()],
+    // [PacketConstants.ITEM_ON_PLAYER, new UseItemPacketListener()],
+    // [PacketConstants.ADD_FRIEND_OPCODE, new PlayerRelationPacketListener()],
+    // [PacketConstants.REMOVE_FRIEND_OPCODE, new PlayerRelationPacketListener()],
+    // [PacketConstants.ADD_IGNORE_OPCODE, new PlayerRelationPacketListener()],
+    // [PacketConstants.REMOVE_IGNORE_OPCODE, new PlayerRelationPacketListener()],
+    // [PacketConstants.SEND_PM_OPCODE, new PlayerRelationPacketListener()],
+    // [PacketConstants.ENTER_AMOUNT_OPCODE, new EnterInputPacketListener()],
+    // [PacketConstants.ENTER_SYNTAX_OPCODE, new EnterInputPacketListener()],
+    // [PacketConstants.TRADE_REQUEST_OPCODE, new TradeRequestPacketListener()],
+    // [PacketConstants.CREATION_MENU_OPCODE, new CreationMenuPacketListener()]
+    ]);
     return PacketConstants;
 }());
+exports.PacketConstants = PacketConstants;
 //# sourceMappingURL=PacketConstants.js.map

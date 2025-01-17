@@ -21,13 +21,13 @@ var ValueType;
     ValueType[ValueType["C"] = 1] = "C";
     ValueType[ValueType["S"] = 2] = "S";
     ValueType[ValueType["STANDARD"] = 3] = "STANDARD";
-})(ValueType = exports.ValueType || (exports.ValueType = {}));
+})(ValueType || (exports.ValueType = ValueType = {}));
 var AccessType;
 (function (AccessType) {
     AccessType[AccessType["BIT"] = 0] = "BIT";
     AccessType[AccessType["BYTE"] = 1] = "BYTE";
-})(AccessType = exports.AccessType || (exports.AccessType = {}));
-var PacketBuilder = exports.PacketBuilder = /** @class */ (function () {
+})(AccessType || (exports.AccessType = AccessType = {}));
+var PacketBuilder = /** @class */ (function () {
     function PacketBuilder(opcodeOrType, type) {
         this.buffers = Buffer.alloc(10);
         this._buffer = Buffer.from('my string', 'utf-8');
@@ -438,4 +438,5 @@ var PacketBuilder = exports.PacketBuilder = /** @class */ (function () {
         0xfffffff, 0x1fffffff, 0x3fffffff, 0x7fffffff, -1];
     return PacketBuilder;
 }());
+exports.PacketBuilder = PacketBuilder;
 //# sourceMappingURL=PacketBuilder.js.map

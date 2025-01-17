@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ByteBufUtils = void 0;
 var stringbuilder_1 = require("stringbuilder");
-var ByteBufUtils = exports.ByteBufUtils = /** @class */ (function () {
+var ByteBufUtils = /** @class */ (function () {
     function ByteBufUtils() {
     }
     ByteBufUtils.getMedium = function (buffer) {
@@ -56,5 +56,6 @@ var ByteBufUtils = exports.ByteBufUtils = /** @class */ (function () {
     ByteBufUtils.J_STRING_TERMINATOR = '\n';
     return ByteBufUtils;
 }());
+exports.ByteBufUtils = ByteBufUtils;
 //TODO: Trocar ByteBuf e ByteBuffer pro Buffer
 //# sourceMappingURL=ByteBufUtils.js.map
