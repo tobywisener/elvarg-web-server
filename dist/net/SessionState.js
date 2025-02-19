@@ -6,5 +6,5 @@ var SessionState;
     SessionState[SessionState["LOGGING_IN"] = 0] = "LOGGING_IN";
     SessionState[SessionState["LOGGED_IN"] = 1] = "LOGGED_IN";
     SessionState[SessionState["REQUESTED_LOG_OUT"] = 2] = "REQUESTED_LOG_OUT";
-})(SessionState = exports.SessionState || (exports.SessionState = {}));
+})(SessionState || (exports.SessionState = SessionState = {}));
 //# sourceMappingURL=SessionState.js.map

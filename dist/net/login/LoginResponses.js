@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -38,33 +38,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LoginResponses = void 0;
 var Server_1 = require("../../Server");
-var World_1 = require("../../game/World");
+// import { World } from '../../game/World';
+// import { Player } from '../../game/entity/impl/player/Player';
 var Misc_1 = require("../../util/Misc");
 var DiscordUtil_1 = require("../../util/DiscordUtil");
 var PlayerPunishment_1 = require("../../util/PlayerPunishment");
-var GameConstants_1 = require("../../game/GameConstants");
-var LoginResponses = exports.LoginResponses = /** @class */ (function () {
+// import { GameConstants } from '../../game/GameConstants';
+var LoginResponses = /** @class */ (function () {
     function LoginResponses() {
     }
+    // public static async evaluate(player: Player, msg: LoginDetailsMessage) {
     LoginResponses.evaluate = function (player, msg) {
         return __awaiter(this, void 0, void 0, function () {
             var playerLoadingResponse;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (World_1.World.getPlayers().isFull()) {
-                            return [2 /*return*/, this.LOGIN_WORLD_FULL];
-                        }
+                        // if (World.getPlayers().isFull()) {
+                        //     return this.LOGIN_WORLD_FULL;
+                        // }
                         if (Server_1.Server.isUpdating()) {
                             return [2 /*return*/, this.LOGIN_GAME_UPDATE];
                         }
-                        if (player.getUsername().startsWith(" ") || player.getUsername().endsWith(" ")
-                            || !Misc_1.Misc.isValidName(player.getUsername())) {
+                        if (player.getUsername().startsWith(" ") ||
+                            player.getUsername().endsWith(" ") ||
+                            !Misc_1.Misc.isValidName(player.getUsername())) {
                             return [2 /*return*/, this.INVALID_CREDENTIALS_COMBINATION];
                         }
-                        if (World_1.World.getPlayerByName(player.getUsername())) {
-                            return [2 /*return*/, this.LOGIN_ACCOUNT_ONLINE];
-                        }
+                        // if (World.getPlayerByName(player.getUsername())) {
+                        //     return this.LOGIN_ACCOUNT_ONLINE;
+                        // }
                         if (PlayerPunishment_1.PlayerPunishment.banned(player.getUsername())) {
                             return [2 /*return*/, this.LOGIN_DISABLED_ACCOUNT];
                         }
@@ -85,9 +88,10 @@ var LoginResponses = exports.LoginResponses = /** @class */ (function () {
             });
         });
     };
+    // private static async getDiscordResult(player: Player, msg: LoginDetailsMessage): Promise<number> {
     LoginResponses.getDiscordResult = function (player, msg) {
         return __awaiter(this, void 0, void 0, function () {
-            var discordInfo, playerSave, ex_1;
+            var discordInfo, ex_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -109,14 +113,14 @@ var LoginResponses = exports.LoginResponses = /** @class */ (function () {
                     case 4: return [2 /*return*/, LoginResponses.LOGIN_INVALID_CREDENTIALS];
                     case 5:
                         player.setUsername(discordInfo.username);
-                        playerSave = GameConstants_1.GameConstants.PLAYER_PERSISTENCE.load(player.getUsername());
-                        if (!playerSave) {
-                            player.setDiscordLogin(true);
-                            player.setCachedDiscordAccessToken(discordInfo.token);
-                            player.setPasswordHashWithSalt(discordInfo.password);
-                            return [2 /*return*/, LoginResponses.NEW_ACCOUNT];
-                        }
-                        playerSave.applyToPlayer(player);
+                        // let playerSave = GameConstants.PLAYER_PERSISTENCE.load(player.getUsername());
+                        // if (!playerSave) {
+                        //     player.setDiscordLogin(true);
+                        //     player.setCachedDiscordAccessToken(discordInfo.token);
+                        //     player.setPasswordHashWithSalt(discordInfo.password);
+                        //     return LoginResponses.NEW_ACCOUNT;
+                        // }
+                        // playerSave.applyToPlayer(player);
                         return [2 /*return*/, LoginResponses.LOGIN_SUCCESSFUL];
                     case 6:
                         ex_1 = _a.sent();
@@ -126,34 +130,29 @@ var LoginResponses = exports.LoginResponses = /** @class */ (function () {
             });
         });
     };
+    // private static async getPlayerResult(player: Player, msg: LoginDetailsMessage) {
     LoginResponses.getPlayerResult = function (player, msg) {
         return __awaiter(this, void 0, void 0, function () {
-            var plainPassword, playerSave, _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        plainPassword = msg.getPassword();
-                        if (msg.getIsDiscord()) {
-                            return [2 /*return*/, LoginResponses.getDiscordResult(player, msg)];
-                        }
-                        playerSave = GameConstants_1.GameConstants.PLAYER_PERSISTENCE.load(player.getUsername());
-                        if (!!playerSave) return [3 /*break*/, 2];
-                        _b = (_a = player).setPasswordHashWithSalt;
-                        return [4 /*yield*/, GameConstants_1.GameConstants.PLAYER_PERSISTENCE.encryptPassword(plainPassword)];
-                    case 1:
-                        _b.apply(_a, [_c.sent()]);
-                        return [2 /*return*/, LoginResponses.NEW_ACCOUNT];
-                    case 2:
-                        if (msg.getIsDiscord() !== playerSave.isDiscordLoginReturn()) {
-                            // User attempting Discord login on a non-Discord account
-                            return [2 /*return*/, LoginResponses.LOGIN_BAD_SESSION_ID];
-                        }
-                        if (!GameConstants_1.GameConstants.PLAYER_PERSISTENCE.checkPassword(plainPassword, playerSave)) {
-                            return [2 /*return*/, LoginResponses.LOGIN_INVALID_CREDENTIALS];
-                        }
-                        playerSave.applyToPlayer(player);
-                        return [2 /*return*/, LoginResponses.LOGIN_SUCCESSFUL];
+            var plainPassword;
+            return __generator(this, function (_a) {
+                plainPassword = msg.getPassword();
+                if (msg.getIsDiscord()) {
+                    return [2 /*return*/, LoginResponses.getDiscordResult(player, msg)];
                 }
+                // let playerSave = GameConstants.PLAYER_PERSISTENCE.load(player.getUsername());
+                // if (!playerSave) {
+                //     player.setPasswordHashWithSalt(await GameConstants.PLAYER_PERSISTENCE.encryptPassword(plainPassword));
+                //     return LoginResponses.NEW_ACCOUNT;
+                // }
+                // if (msg.getIsDiscord() !== playerSave.isDiscordLoginReturn()) {
+                //     // User attempting Discord login on a non-Discord account
+                //     return LoginResponses.LOGIN_BAD_SESSION_ID;
+                // }
+                // if (!GameConstants.PLAYER_PERSISTENCE.checkPassword(plainPassword, playerSave)) {
+                //     return LoginResponses.LOGIN_INVALID_CREDENTIALS;
+                // }
+                // playerSave.applyToPlayer(player);
+                return [2 /*return*/, LoginResponses.LOGIN_SUCCESSFUL];
             });
         });
     };
@@ -173,4 +172,5 @@ var LoginResponses = exports.LoginResponses = /** @class */ (function () {
     LoginResponses.NEW_ACCOUNT = -1;
     return LoginResponses;
 }());
+exports.LoginResponses = LoginResponses;
 //# sourceMappingURL=LoginResponses.js.map

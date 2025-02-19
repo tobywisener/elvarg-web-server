@@ -7,7 +7,7 @@ var BufferedConnection_1 = require("../flood/BufferedConnection");
 var IsaacRandom_1 = require("../../net/security/IsaacRandom");
 var NetworkConstants_1 = require("../../net/NetworkConstants");
 var socket_io_client_1 = require("socket.io-client");
-var GameConstants_1 = require("../../game/GameConstants");
+// import { GameConstants } from '../../game/GameConstants';
 var LoginResponses_1 = require("../../net/login/LoginResponses");
 var Server_1 = require("../../Server");
 var Client = /** @class */ (function () {
@@ -18,11 +18,11 @@ var Client = /** @class */ (function () {
     }
     Client.prototype.openSocket = function (port) {
         var socket = (0, socket_io_client_1.default)("http://localhost:".concat(port));
-        socket.on('connect', function () {
-            console.log('Conectado ao servidor');
+        socket.on("connect", function () {
+            console.log("Conectado ao servidor");
         });
-        socket.on('disconnect', function () {
-            console.log('Desconectado do servidor');
+        socket.on("disconnect", function () {
+            console.log("Desconectado do servidor");
         });
         return socket;
     };
@@ -53,7 +53,7 @@ var Client = /** @class */ (function () {
                 Math.floor(Math.random() * 99999999),
                 Math.floor(Math.random() * 99999999),
                 this.serverSeed >> 32,
-                this.serverSeed
+                this.serverSeed,
             ];
             this.outgoing.resetPosition();
             this.outgoing.putByte(10);
@@ -61,7 +61,7 @@ var Client = /** @class */ (function () {
             this.outgoing.putInt(seed[1]);
             this.outgoing.putInt(seed[2]);
             this.outgoing.putInt(seed[3]);
-            this.outgoing.putInt(GameConstants_1.GameConstants.CLIENT_UID);
+            // this.outgoing.putInt(GameConstants.CLIENT_UID);
             this.outgoing.putString(this.username);
             this.outgoing.putString(this.password);
             this.outgoing.encryptRSAContent();
@@ -104,7 +104,9 @@ var Client = /** @class */ (function () {
                 opcode = (opcode - this.encryption.nextInt()) & 0xff;
             }
             this.socketStream.flushInputStream(new Uint8Array(this.incoming.payload), 2);
-            packetSize = ((this.incoming.payload[0] & 0xff) << 8) + (this.incoming.payload[1] & 0xff);
+            packetSize =
+                ((this.incoming.payload[0] & 0xff) << 8) +
+                    (this.incoming.payload[1] & 0xff);
         }
         if (!(opcode >= 0 && opcode < 256)) {
             opcode = -1;

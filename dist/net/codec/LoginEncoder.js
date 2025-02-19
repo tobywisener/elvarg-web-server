@@ -12,10 +12,11 @@ var LoginEncoder = /** @class */ (function () {
     function LoginEncoder() {
     }
     LoginEncoder.prototype.encode = function (msg) {
-        io.on('connection', function (socket) {
-            socket.emit('message', msg.getResponse());
+        io.on("connection", function (socket) {
+            socket.emit("message", msg.getResponse());
             if (msg.getResponse() == LoginResponses_1.LoginResponses.LOGIN_SUCCESSFUL) {
-                socket.emit('message', msg.getRights());
+                // socket.emit('message', msg.getRights());
+                socket.emit("message", "");
             }
         });
     };

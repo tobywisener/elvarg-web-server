@@ -1,89 +1,76 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ButtonClickPacketListener = void 0;
-var Emotes_1 = require("../../../game/content/Emotes");
-var ItemsKeptOnDeath_1 = require("../../../game/content/ItemsKeptOnDeath");
-var PrayerHandler_1 = require("../../../game/content/PrayerHandler");
-var ClanChatManager_1 = require("../../../game/content/clan/ClanChatManager");
-var WeaponInterfaces_1 = require("../../../game/content/combat/WeaponInterfaces");
-var Autocasting_1 = require("../../../game/content/combat/magic/Autocasting");
-var EffectSpells_1 = require("../../../game/content/combat/magic/EffectSpells");
-var MinigameHandler_1 = require("../../../game/content/minigames/MinigameHandler");
-var Presetables_1 = require("../../../game/content/presets/Presetables");
-var QuestHandler_1 = require("../../../game/content/quests/QuestHandler");
-var Smithing_1 = require("../../../game/content/skill/skillable/impl/Smithing");
-var Bank_1 = require("../../../game/model/container/impl/Bank");
-var DialogueOption_1 = require("../../../game/model/dialogues/DialogueOption");
-var BonusManager_1 = require("../../../game/model/equipment/BonusManager");
-var PlayerRights_1 = require("../../../game/model/rights/PlayerRights");
-var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class */ (function () {
+// import { Dueling } from '../../../game/content/Duelling';
+var ButtonClickPacketListener = /** @class */ (function () {
     function ButtonClickPacketListener() {
     }
-    ButtonClickPacketListener.handlers = function (player, button) {
-        if (PrayerHandler_1.PrayerHandler.togglePrayer(player, button)) {
-            return true;
-        }
-        if (Autocasting_1.Autocasting.handleWeaponInterface(player, button)
-            || Autocasting_1.Autocasting.handleAutocastTab(player, button)
-            || Autocasting_1.Autocasting.toggleAutocast(player, button)) {
-            return true;
-        }
-        if (WeaponInterfaces_1.WeaponInterfaces.changeCombatSettings(player, button)) {
-            BonusManager_1.BonusManager.update(player);
-            return true;
-        }
-        if (EffectSpells_1.EffectSpells.handleSpell(player, button)) {
-            return true;
-        }
-        if (Bank_1.Bank.handleButton(player, button, 0)) {
-            return true;
-        }
-        if (Emotes_1.Emotes.doEmote(player, button)) {
-            return true;
-        }
-        if (ClanChatManager_1.ClanChatManager.handleButton(player, button, 0)) {
-            return true;
-        }
-        if (player.getSkillManager().pressedSkill(button)) {
-            return true;
-        }
-        if (player.getQuickPrayers().handleButton(button)) {
-            return true;
-        }
-        if (player.getDueling().checkRules(button)) {
-            return true;
-        }
-        if (Smithing_1.Smithing.handleButton(player, button)) {
-            return true;
-        }
-        if (Presetables_1.Presetables.handleButton(player, button)) {
-            return true;
-        }
-        if (QuestHandler_1.Quests.handleQuestButtonClick(player, button)) {
-            return true;
-        }
-        if (MinigameHandler_1.MinigameHandler.handleButtonClick(player, button)) {
-            return true;
-        }
-        return false;
-    };
+    // public static handlers(player: Player, button: number): boolean {
+    //   if (PrayerHandler.togglePrayer(player, button)) {
+    //     return true;
+    //   }
+    //   if (Autocasting.handleWeaponInterface(player, button)
+    //     || Autocasting.handleAutocastTab(player, button)
+    //     || Autocasting.toggleAutocast(player, button)) {
+    //     return true;
+    //   }
+    //   if (WeaponInterfaces.changeCombatSettings(player, button)) {
+    //     BonusManager.update(player);
+    //     return true;
+    //   }
+    //   if (EffectSpells.handleSpell(player, button)) {
+    //     return true;
+    //   }
+    //   if (Bank.handleButton(player, button, 0)) {
+    //     return true;
+    //   }
+    //   if (Emotes.doEmote(player, button)) {
+    //     return true;
+    //   }
+    //   if (ClanChatManager.handleButton(player, button, 0)) {
+    //     return true;
+    //   }
+    //   if (player.getSkillManager().pressedSkill(button)) {
+    //     return true;
+    //   }
+    //   if (player.getQuickPrayers().handleButton(button)) {
+    //     return true;
+    //   }
+    //   if (player.getDueling().checkRules(button)) {
+    //     return true;
+    //   }
+    //   if (Smithing.handleButton(player, button)) {
+    //     return true;
+    //   }
+    //   if (Presetables.handleButton(player, button)) {
+    //     return true;
+    //   }
+    //   if (Quests.handleQuestButtonClick(player, button)) {
+    //     return true;
+    //   }
+    //   if (MinigameHandler.handleButtonClick(player, button)) {
+    //     return true;
+    //   }
+    //   return false;
+    // }
+    // execute(player: Player, packet: Packet): void {
     ButtonClickPacketListener.prototype.execute = function (player, packet) {
         var button = packet.readInt();
         if (player.getHitpoints() <= 0 || player.isTeleporting) {
             return;
         }
-        if (player.getRights() == PlayerRights_1.PlayerRights.DEVELOPER) {
-            player.getPacketSender().sendMessage("Button clicked: " + button.toString() + ".");
-        }
-        if (ButtonClickPacketListener.handlers(player, button)) {
-            return;
-        }
+        // if (player.getRights() == PlayerRights.DEVELOPER) {
+        //   player.getPacketSender().sendMessage("Button clicked: " + button.toString() + ".");
+        // }
+        // if (ButtonClickPacketListener.handlers(player, button)) {
+        //   return;
+        // }
         switch (button) {
             case ButtonClickPacketListener.OPEN_PRESETS:
                 if (player.busy()) {
                     player.getPacketSender().sendInterfaceRemoval();
                 }
-                Presetables_1.Presetables.opens(player);
+                // Presetables.opens(player);
                 break;
             case ButtonClickPacketListener.OPEN_WORLD_MAP:
                 if (player.busy()) {
@@ -96,7 +83,9 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
                     player.requestLogout();
                 }
                 else {
-                    player.getPacketSender().sendMessage("You cannot log out at the moment.");
+                    player
+                        .getPacketSender()
+                        .sendMessage("You cannot log out at the moment.");
                 }
                 break;
             case ButtonClickPacketListener.TOGGLE_RUN_ENERGY_ORB:
@@ -128,7 +117,7 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
                 if (player.busy()) {
                     player.getPacketSender().sendInterfaceRemoval();
                 }
-                BonusManager_1.BonusManager.open(player);
+                // BonusManager.open(player);
                 break;
             case ButtonClickPacketListener.OPEN_PRICE_CHECKER:
                 if (player.busy()) {
@@ -140,7 +129,7 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
                 if (player.busy()) {
                     player.getPacketSender().sendInterfaceRemoval();
                 }
-                ItemsKeptOnDeath_1.ItemsKeptOnDeath.open(player);
+                // ItemsKeptOnDeath.open(player);
                 break;
             case ButtonClickPacketListener.PRICE_CHECKER_WITHDRAW_ALL:
                 player.getPriceChecker().withdrawAll();
@@ -170,7 +159,9 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
                 var item = player.getDestroyItem();
                 player.getPacketSender().sendInterfaceRemoval();
                 if (item != -1) {
-                    player.getInventory().deleteNumber(item, player.getInventory().getAmount(item));
+                    player
+                        .getInventory()
+                        .deleteNumber(item, player.getInventory().getAmount(item));
                 }
                 break;
             case ButtonClickPacketListener.CANCEL_DESTROY_ITEM:
@@ -179,10 +170,14 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
             case ButtonClickPacketListener.TOGGLE_EXP_LOCK:
                 player.setExperienceLocked(!player.experienceLockedReturn());
                 if (player.experienceLockedReturn()) {
-                    player.getPacketSender().sendMessage("Your experience is now @red@locked.");
+                    player
+                        .getPacketSender()
+                        .sendMessage("Your experience is now @red@locked.");
                 }
                 else {
-                    player.getPacketSender().sendMessage("Your experience is now @red@unlocked.");
+                    player
+                        .getPacketSender()
+                        .sendMessage("Your experience is now @red@unlocked.");
                 }
                 break;
             case ButtonClickPacketListener.CLOSE_BUTTON_1:
@@ -194,25 +189,25 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
             case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_FOUR:
             case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_THREE:
             case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_TWO:
-                player.getDialogueManager().handleOption(DialogueOption_1.DialogueOption.FIRST_OPTION);
+                // player.getDialogueManager().handleOption(DialogueOption.FIRST_OPTION);
                 break;
             case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_FIVE:
             case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_FOUR:
             case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_THREE:
             case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_TWO:
-                player.getDialogueManager().handleOption(DialogueOption_1.DialogueOption.SECOND_OPTION);
+                // player.getDialogueManager().handleOption(DialogueOption.SECOND_OPTION);
                 break;
             case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_FIVE:
             case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_FOUR:
             case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_THREE:
-                player.getDialogueManager().handleOption(DialogueOption_1.DialogueOption.THIRD_OPTION);
+                // player.getDialogueManager().handleOption(DialogueOption.THIRD_OPTION);
                 break;
             case ButtonClickPacketListener.FOURTH_DIALOGUE_OPTION_OF_FIVE:
             case ButtonClickPacketListener.FOURTH_DIALOGUE_OPTION_OF_FOUR:
-                player.getDialogueManager().handleOption(DialogueOption_1.DialogueOption.FOURTH_OPTION);
+                // player.getDialogueManager().handleOption(DialogueOption.FOURTH_OPTION);
                 break;
             case ButtonClickPacketListener.FIFTH_DIALOGUE_OPTION_OF_FIVE:
-                player.getDialogueManager().handleOption(DialogueOption_1.DialogueOption.FIFTH_OPTION);
+                // player.getDialogueManager().handleOption(DialogueOption.FIFTH_OPTION);
                 break;
             default:
                 // player.getPacketSender().sendMessage("Player "+player.getUsername()+", click button: "+button);
@@ -269,4 +264,5 @@ var ButtonClickPacketListener = exports.ButtonClickPacketListener = /** @class *
     ButtonClickPacketListener.OPEN_KEY_BINDINGS = 42552;
     return ButtonClickPacketListener;
 }());
+exports.ButtonClickPacketListener = ButtonClickPacketListener;
 //# sourceMappingURL=ButtonClickPacketListener.js.map

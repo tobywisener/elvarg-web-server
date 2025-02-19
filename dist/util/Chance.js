@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Chance = void 0;
 var Misc_1 = require("./Misc");
-var Chance = exports.Chance = /** @class */ (function () {
+var Chance = /** @class */ (function () {
     function Chance(percentage) {
         this.percentage = percentage;
     }
@@ -22,4 +22,5 @@ var Chance = exports.Chance = /** @class */ (function () {
     Chance.ALMOST_IMPOSSIBLE = new Chance(1);
     return Chance;
 }());
+exports.Chance = Chance;
 //# sourceMappingURL=Chance.js.map

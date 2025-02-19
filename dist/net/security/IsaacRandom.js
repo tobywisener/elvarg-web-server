@@ -26,7 +26,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.IsaacRandom = void 0;
-var IsaacRandom = exports.IsaacRandom = /** @class */ (function () {
+var IsaacRandom = /** @class */ (function () {
     function IsaacRandom(seed) {
         var _a;
         this.results = new Array(IsaacRandom.SIZE);
@@ -213,4 +213,5 @@ var IsaacRandom = exports.IsaacRandom = /** @class */ (function () {
     IsaacRandom.MASK = IsaacRandom.SIZE - 1 << 2;
     return IsaacRandom;
 }());
+exports.IsaacRandom = IsaacRandom;
 //# sourceMappingURL=IsaacRandom.js.map

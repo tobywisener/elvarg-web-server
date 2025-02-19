@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NpcIdentifiers = void 0;
-var NpcIdentifiers = exports.NpcIdentifiers = /** @class */ (function () {
+var NpcIdentifiers = /** @class */ (function () {
     function NpcIdentifiers() {
     }
     NpcIdentifiers.TOOL_LEPRECHAUN = 0;
@@ -7742,4 +7742,5 @@ var NpcIdentifiers = exports.NpcIdentifiers = /** @class */ (function () {
     NpcIdentifiers.FAIRY_7 = 7748;
     return NpcIdentifiers;
 }());
+exports.NpcIdentifiers = NpcIdentifiers;
 //# sourceMappingURL=NpcIdentifiers.js.map

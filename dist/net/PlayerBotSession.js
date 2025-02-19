@@ -24,8 +24,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -55,8 +55,10 @@ exports.PlayerBotSession = void 0;
 var PlayerSession_1 = require("./PlayerSession");
 var PlayerBotSession = /** @class */ (function (_super) {
     __extends(PlayerBotSession, _super);
+    // public player: Player;
     function PlayerBotSession() {
         return _super.call(this, {
+            // @ts-ignore
             parent: null,
             config: null,
             localAddress: null,
@@ -124,44 +126,40 @@ var PlayerBotSession = /** @class */ (function (_super) {
         });
     };
     /**
-    
-    Queues a recently decoded packet received from the channel.
-    @param msg The packet that should be queued.
-    */
-    PlayerBotSession.prototype.queuePacket = function (msg) {
-    };
+      
+      Queues a recently decoded packet received from the channel.
+      @param msg The packet that should be queued.
+      */
+    PlayerBotSession.prototype.queuePacket = function (msg) { };
     /**
-    
-    Processes all of the queued messages from the {@link PacketDecoder} by
-    polling the internal queue, and then handling them via the
-    handleInputMessage. This method is called EACH GAME CYCLE.
-    */
-    PlayerBotSession.prototype.processPackets = function () {
-    };
+      
+      Processes all of the queued messages from the {@link PacketDecoder} by
+      polling the internal queue, and then handling them via the
+      handleInputMessage. This method is called EACH GAME CYCLE.
+      */
+    PlayerBotSession.prototype.processPackets = function () { };
     /**
-    
-    Queues the {@code msg} for this session to be encoded and sent to the client.
-    @param builder the packet to queue.
-    */
-    PlayerBotSession.prototype.write = function (builder) {
-    };
+      
+      Queues the {@code msg} for this session to be encoded and sent to the client.
+      @param builder the packet to queue.
+      */
+    PlayerBotSession.prototype.write = function (builder) { };
     /**
-    
-    Flushes this channel.
-    */
-    PlayerBotSession.prototype.flush = function () {
-    };
+      
+      Flushes this channel.
+      */
+    PlayerBotSession.prototype.flush = function () { };
     /**
-    
-    Gets the player I/O operations will be executed for.
-    @return the player I/O operations.
-    */
-    PlayerBotSession.prototype.getPlayer = function () {
-        return this.player;
-    };
-    PlayerBotSession.prototype.setPlayer = function (player) {
-        this.player = player;
-    };
+      
+      Gets the player I/O operations will be executed for.
+      @return the player I/O operations.
+      */
+    // public getPlayer(): Player {
+    //     return this.player;
+    // }
+    // public setPlayer(player: Player): void {
+    //     this.player = player;
+    // }
     PlayerBotSession.prototype.getChannel = function () {
         return null;
     };

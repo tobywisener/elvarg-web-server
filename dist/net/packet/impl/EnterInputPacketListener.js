@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EnterInputPacketListener = void 0;
+// import { Player } from "../../../game/entity/impl/player/Player";
 var ByteBufUtils_1 = require("../../../net/ByteBufUtils");
 var PacketConstants_1 = require("../../../net/packet/PacketConstants");
 var EnterInputPacketListener = /** @class */ (function () {
     function EnterInputPacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     EnterInputPacketListener.prototype.execute = function (player, packet) {
         if (player == null || player.getHitpoints() <= 0) {
             return;

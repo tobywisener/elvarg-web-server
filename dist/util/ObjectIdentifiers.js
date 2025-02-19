@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ObjectIdentifiers = void 0;
-var ObjectIdentifiers = exports.ObjectIdentifiers = /** @class */ (function () {
+var ObjectIdentifiers = /** @class */ (function () {
     function ObjectIdentifiers() {
     }
     ObjectIdentifiers.CRATE = 1;
@@ -16238,4 +16238,5 @@ var ObjectIdentifiers = exports.ObjectIdentifiers = /** @class */ (function () {
     ObjectIdentifiers.TUNNEL_46 = 30375;
     return ObjectIdentifiers;
 }());
+exports.ObjectIdentifiers = ObjectIdentifiers;
 //# sourceMappingURL=ObjectIdentifiers.js.map

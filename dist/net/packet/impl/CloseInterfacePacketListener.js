@@ -4,6 +4,7 @@ exports.CloseInterfacePacketListener = void 0;
 var CloseInterfacePacketListener = /** @class */ (function () {
     function CloseInterfacePacketListener() {
     }
+    // execute(player: Player, packet: Packet) {
     CloseInterfacePacketListener.prototype.execute = function (player, packet) {
         player.getPacketSender().sendInterfaceRemoval();
     };

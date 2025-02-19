@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemIdentifiers = void 0;
-var ItemIdentifiers = exports.ItemIdentifiers = /** @class */ (function () {
+var ItemIdentifiers = /** @class */ (function () {
     function ItemIdentifiers() {
         this.staticEL_REPORT = 761;
     }
@@ -26302,4 +26302,5 @@ var ItemIdentifiers = exports.ItemIdentifiers = /** @class */ (function () {
     ItemIdentifiers.SHATTERED_RELIC_HUNTER_T3_ARMOUR_SET_3 = 26562;
     return ItemIdentifiers;
 }());
+exports.ItemIdentifiers = ItemIdentifiers;
 //# sourceMappingURL=ItemIdentifiers.js.map

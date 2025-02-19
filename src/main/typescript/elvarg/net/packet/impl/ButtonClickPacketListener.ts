@@ -1,22 +1,22 @@
-import { PacketExecutor } from '../PacketExecutor';
-import { Emotes } from '../../../game/content/Emotes';
-import { ItemsKeptOnDeath } from '../../../game/content/ItemsKeptOnDeath';
-import { PrayerHandler } from '../../../game/content/PrayerHandler';
-import { ClanChatManager } from '../../../game/content/clan/ClanChatManager';
-import { WeaponInterfaces } from '../../../game/content/combat/WeaponInterfaces';
-import { Autocasting } from '../../../game/content/combat/magic/Autocasting';
-import { EffectSpells } from '../../../game/content/combat/magic/EffectSpells';
-import { MinigameHandler } from '../../../game/content/minigames/MinigameHandler';
-import { Presetables } from '../../../game/content/presets/Presetables';
-import { QuestHandler, Quests } from '../../../game/content/quests/QuestHandler';
-import { Smithing } from '../../../game/content/skill/skillable/impl/Smithing';
-import { Player } from '../../../game/entity/impl/player/Player';
-import { Bank } from '../../../game/model/container/impl/Bank';
-import { DialogueOption } from '../../../game/model/dialogues/DialogueOption';
-import { BonusManager } from '../../../game/model/equipment/BonusManager';
-import { PlayerRights } from '../../../game/model/rights/PlayerRights';
-import { Packet } from '../Packet';
-import { Dueling } from '../../../game/content/Duelling';
+import { PacketExecutor } from "../PacketExecutor";
+// import { Emotes } from '../../../game/content/Emotes';
+// import { ItemsKeptOnDeath } from '../../../game/content/ItemsKeptOnDeath';
+// import { PrayerHandler } from '../../../game/content/PrayerHandler';
+// import { ClanChatManager } from '../../../game/content/clan/ClanChatManager';
+// import { WeaponInterfaces } from '../../../game/content/combat/WeaponInterfaces';
+// import { Autocasting } from '../../../game/content/combat/magic/Autocasting';
+// import { EffectSpells } from '../../../game/content/combat/magic/EffectSpells';
+// import { MinigameHandler } from '../../../game/content/minigames/MinigameHandler';
+// import { Presetables } from '../../../game/content/presets/Presetables';
+// import { QuestHandler, Quests } from '../../../game/content/quests/QuestHandler';
+// import { Smithing } from '../../../game/content/skill/skillable/impl/Smithing';
+// import { Player } from '../../../game/entity/impl/player/Player';
+// import { Bank } from '../../../game/model/container/impl/Bank';
+// import { DialogueOption } from '../../../game/model/dialogues/DialogueOption';
+// import { BonusManager } from '../../../game/model/equipment/BonusManager';
+// import { PlayerRights } from '../../../game/model/rights/PlayerRights';
+import { Packet } from "../Packet";
+// import { Dueling } from '../../../game/content/Duelling';
 
 export class ButtonClickPacketListener implements PacketExecutor {
   public static readonly FIRST_DIALOGUE_OPTION_OF_FIVE: number = 2494;
@@ -69,76 +69,77 @@ export class ButtonClickPacketListener implements PacketExecutor {
   private static readonly OPEN_ADVANCED_OPTIONS: number = 42524;
   private static readonly OPEN_KEY_BINDINGS: number = 42552;
 
-  public static handlers(player: Player, button: number): boolean {
-    if (PrayerHandler.togglePrayer(player, button)) {
-      return true;
-    }
-    if (Autocasting.handleWeaponInterface(player, button)
-      || Autocasting.handleAutocastTab(player, button)
-      || Autocasting.toggleAutocast(player, button)) {
-      return true;
-    }
-    if (WeaponInterfaces.changeCombatSettings(player, button)) {
-      BonusManager.update(player);
-      return true;
-    }
-    if (EffectSpells.handleSpell(player, button)) {
-      return true;
-    }
-    if (Bank.handleButton(player, button, 0)) {
-      return true;
-    }
-    if (Emotes.doEmote(player, button)) {
-      return true;
-    }
-    if (ClanChatManager.handleButton(player, button, 0)) {
-      return true;
-    }
-    if (player.getSkillManager().pressedSkill(button)) {
-      return true;
-    }
-    if (player.getQuickPrayers().handleButton(button)) {
-      return true;
-    }
-    if (player.getDueling().checkRules(button)) {
-      return true;
-    }
-    if (Smithing.handleButton(player, button)) {
-      return true;
-    }
-    if (Presetables.handleButton(player, button)) {
-      return true;
-    }
-    if (Quests.handleQuestButtonClick(player, button)) {
-      return true;
-    }
-    if (MinigameHandler.handleButtonClick(player, button)) {
-      return true;
-    }
-    return false;
-  }
+  // public static handlers(player: Player, button: number): boolean {
+  //   if (PrayerHandler.togglePrayer(player, button)) {
+  //     return true;
+  //   }
+  //   if (Autocasting.handleWeaponInterface(player, button)
+  //     || Autocasting.handleAutocastTab(player, button)
+  //     || Autocasting.toggleAutocast(player, button)) {
+  //     return true;
+  //   }
+  //   if (WeaponInterfaces.changeCombatSettings(player, button)) {
+  //     BonusManager.update(player);
+  //     return true;
+  //   }
+  //   if (EffectSpells.handleSpell(player, button)) {
+  //     return true;
+  //   }
+  //   if (Bank.handleButton(player, button, 0)) {
+  //     return true;
+  //   }
+  //   if (Emotes.doEmote(player, button)) {
+  //     return true;
+  //   }
+  //   if (ClanChatManager.handleButton(player, button, 0)) {
+  //     return true;
+  //   }
+  //   if (player.getSkillManager().pressedSkill(button)) {
+  //     return true;
+  //   }
+  //   if (player.getQuickPrayers().handleButton(button)) {
+  //     return true;
+  //   }
+  //   if (player.getDueling().checkRules(button)) {
+  //     return true;
+  //   }
+  //   if (Smithing.handleButton(player, button)) {
+  //     return true;
+  //   }
+  //   if (Presetables.handleButton(player, button)) {
+  //     return true;
+  //   }
+  //   if (Quests.handleQuestButtonClick(player, button)) {
+  //     return true;
+  //   }
+  //   if (MinigameHandler.handleButtonClick(player, button)) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
-  execute(player: Player, packet: Packet): void {
+  // execute(player: Player, packet: Packet): void {
+  execute(player: any, packet: Packet): void {
     let button = packet.readInt();
 
     if (player.getHitpoints() <= 0 || player.isTeleporting) {
       return;
     }
 
-    if (player.getRights() == PlayerRights.DEVELOPER) {
-      player.getPacketSender().sendMessage("Button clicked: " + button.toString() + ".");
-    }
+    // if (player.getRights() == PlayerRights.DEVELOPER) {
+    //   player.getPacketSender().sendMessage("Button clicked: " + button.toString() + ".");
+    // }
 
-    if (ButtonClickPacketListener.handlers(player, button)) {
-      return;
-    }
+    // if (ButtonClickPacketListener.handlers(player, button)) {
+    //   return;
+    // }
 
     switch (button) {
       case ButtonClickPacketListener.OPEN_PRESETS:
         if (player.busy()) {
           player.getPacketSender().sendInterfaceRemoval();
         }
-        Presetables.opens(player);
+        // Presetables.opens(player);
         break;
 
       case ButtonClickPacketListener.OPEN_WORLD_MAP:
@@ -152,7 +153,9 @@ export class ButtonClickPacketListener implements PacketExecutor {
         if (player.canLogout()) {
           player.requestLogout();
         } else {
-          player.getPacketSender().sendMessage("You cannot log out at the moment.");
+          player
+            .getPacketSender()
+            .sendMessage("You cannot log out at the moment.");
         }
         break;
 
@@ -187,7 +190,7 @@ export class ButtonClickPacketListener implements PacketExecutor {
         if (player.busy()) {
           player.getPacketSender().sendInterfaceRemoval();
         }
-        BonusManager.open(player);
+        // BonusManager.open(player);
         break;
 
       case ButtonClickPacketListener.OPEN_PRICE_CHECKER:
@@ -201,7 +204,7 @@ export class ButtonClickPacketListener implements PacketExecutor {
         if (player.busy()) {
           player.getPacketSender().sendInterfaceRemoval();
         }
-        ItemsKeptOnDeath.open(player);
+        // ItemsKeptOnDeath.open(player);
         break;
 
       case ButtonClickPacketListener.PRICE_CHECKER_WITHDRAW_ALL:
@@ -237,7 +240,9 @@ export class ButtonClickPacketListener implements PacketExecutor {
         let item = player.getDestroyItem();
         player.getPacketSender().sendInterfaceRemoval();
         if (item != -1) {
-          player.getInventory().deleteNumber(item, player.getInventory().getAmount(item));
+          player
+            .getInventory()
+            .deleteNumber(item, player.getInventory().getAmount(item));
         }
         break;
 
@@ -248,9 +253,13 @@ export class ButtonClickPacketListener implements PacketExecutor {
       case ButtonClickPacketListener.TOGGLE_EXP_LOCK:
         player.setExperienceLocked(!player.experienceLockedReturn());
         if (player.experienceLockedReturn()) {
-          player.getPacketSender().sendMessage("Your experience is now @red@locked.");
+          player
+            .getPacketSender()
+            .sendMessage("Your experience is now @red@locked.");
         } else {
-          player.getPacketSender().sendMessage("Your experience is now @red@unlocked.");
+          player
+            .getPacketSender()
+            .sendMessage("Your experience is now @red@unlocked.");
         }
         break;
 
@@ -264,25 +273,25 @@ export class ButtonClickPacketListener implements PacketExecutor {
       case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_FOUR:
       case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_THREE:
       case ButtonClickPacketListener.FIRST_DIALOGUE_OPTION_OF_TWO:
-        player.getDialogueManager().handleOption(DialogueOption.FIRST_OPTION);
+        // player.getDialogueManager().handleOption(DialogueOption.FIRST_OPTION);
         break;
       case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_FIVE:
       case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_FOUR:
       case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_THREE:
       case ButtonClickPacketListener.SECOND_DIALOGUE_OPTION_OF_TWO:
-        player.getDialogueManager().handleOption(DialogueOption.SECOND_OPTION);
+        // player.getDialogueManager().handleOption(DialogueOption.SECOND_OPTION);
         break;
       case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_FIVE:
       case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_FOUR:
       case ButtonClickPacketListener.THIRD_DIALOGUE_OPTION_OF_THREE:
-        player.getDialogueManager().handleOption(DialogueOption.THIRD_OPTION);
+        // player.getDialogueManager().handleOption(DialogueOption.THIRD_OPTION);
         break;
       case ButtonClickPacketListener.FOURTH_DIALOGUE_OPTION_OF_FIVE:
       case ButtonClickPacketListener.FOURTH_DIALOGUE_OPTION_OF_FOUR:
-        player.getDialogueManager().handleOption(DialogueOption.FOURTH_OPTION);
+        // player.getDialogueManager().handleOption(DialogueOption.FOURTH_OPTION);
         break;
       case ButtonClickPacketListener.FIFTH_DIALOGUE_OPTION_OF_FIVE:
-        player.getDialogueManager().handleOption(DialogueOption.FIFTH_OPTION);
+        // player.getDialogueManager().handleOption(DialogueOption.FIFTH_OPTION);
         break;
       default:
         // player.getPacketSender().sendMessage("Player "+player.getUsername()+", click button: "+button);

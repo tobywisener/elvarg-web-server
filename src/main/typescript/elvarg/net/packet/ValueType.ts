@@ -1,6 +1,6 @@
 export enum ValueType {
-    STANDARD,
-    A,
-    C,
-    S,
+  A,
+  C,
+  S,
+  STANDARD,
 }

@@ -8,5 +8,5 @@ var ByteOrder;
     ByteOrder[ByteOrder["MIDDLE"] = 2] = "MIDDLE";
     ByteOrder[ByteOrder["INVERSE_MIDDLE"] = 3] = "INVERSE_MIDDLE";
     ByteOrder[ByteOrder["TRIPLE_INT"] = 4] = "TRIPLE_INT";
-})(ByteOrder = exports.ByteOrder || (exports.ByteOrder = {}));
+})(ByteOrder || (exports.ByteOrder = ByteOrder = {}));
 //# sourceMappingURL=ByteOrder.js.map
